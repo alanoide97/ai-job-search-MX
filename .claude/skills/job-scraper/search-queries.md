@@ -1,90 +1,106 @@
-# Search Queries for Job Scraper
+# Search Queries for Job Scraper (Mexico & Remote LATAM Edition)
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- SETUP: Customize these queries based on your target role, industry, and location -->
 
-## Installed portal CLIs (primary for `/scrape`)
+## Installed Portal CLIs (Primary for `/scrape`)
 
-`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`; Danish demos and any skill you add with `/add-portal` are included the same way. You do **not** need a matching `site:` line below for those CLIs to run.
+`/scrape` automatically discovers every portal skill under `.agents/skills/*/SKILL.md` and executes its CLI. This distribution includes **28 pre-configured portal search tools** specifically built for the Mexican job market, corporate ATS systems, and remote platforms:
 
-The `site:` query templates in this file are the **WebSearch fallback** — for portals without a CLI, company career pages, or when a CLI fails.
+### 1. Mexican Corporate Enterprise Portals (Direct ATS)
+- `cemex-search` — CEMEX Global Headquarters & nationwide plants/operations (SuccessFactors CSB).
+- `femsa-search` — FEMSA Corporate, OXXO, Solistica, and Spin by OXXO (SuccessFactors CSB).
+- `arcacontinental-search` — Arca Continental (Coca-Cola, Bokados, AC Digital) (SuccessFactors CSB).
+- `gruma-search` — Gruma, Maseca & Mission Foods Global Headquarters and mills (SuccessFactors CSB).
+- `heb-search` — H-E-B México supermarkets, Mi Tienda del Ahorro & Tech Hub (SuccessFactors CSB).
+- `soriana-search` — Organización Soriana, City Club & Sodimac (AIRA ATS).
+- `liverpool-search` — El Puerto de Liverpool, Suburbia & Galerías (AIRA ATS).
+- `homedepot-search` — The Home Depot México Corporate (OAT), CEDIS & retail (WordPress AJAX + OAT API).
+- `coppel-search` — Grupo Coppel, BanCoppel & Afore Coppel (Oracle Cloud HCM `CX_1001`).
+- `autozone-search` — AutoZone México Support Center, BTSSC & CEDIS (Oracle Cloud HCM `CX_1`).
+- `fahorro-search` — Farmacias del Ahorro Corporate & retail branches (Workday CXS).
+- `tec-search` — Tecnológico de Monterrey, Tecmilenio, TecSalud & Sorteos Tec (SuccessFactors CSB).
+- `ternium-search` — Ternium & Techint Group industrial facilities (SuccessFactors CSB).
+- `dana-search` — Dana Incorporated automotive manufacturing (SuccessFactors CSB).
+- `hershey-search` — The Hershey Company manufacturing & supply chain (SuccessFactors CSB).
+- `pepsico-search` — PepsiCo México (Gamesa, Sabritas, Quaker) (Jibe ATS).
+- `nestle-search` — Nestlé México (Purina, Nescafé, Cereal Partners) (SuccessFactors CSB).
+- `posadas-search` — Grupo Posadas hotel brands (Fiesta Americana, Fiesta Inn, Live Aqua) (SuccessFactors CSB).
+- `monterrey-gob-search` — Bolsa Oficial del Gobierno de Monterrey (Direct employer listings with verified salaries).
 
-**Language scope:** write every query category in every language listed in your CLAUDE.md Languages table (typically 1-2, sometimes more). A posting requiring a language you have *not* declared, as a job condition, is excluded before scoring; a posting requiring a *higher level* than you declared in a language you *do* work in is flagged for your own judgment, not excluded — see `04-job-evaluation.md`'s Language Gate, the single source of truth for this rule. Translate each category's keywords rather than machine-translating word-for-word (e.g. "Frontend Developer" -> "Desarrollador Frontend", not a literal word-for-word translation) if you work in more than one language.
+### 2. General Aggregators & National Job Boards
+- `computrabajo-search` — Computrabajo México (Mexico's highest-volume general job board across all job functions).
+- `talenteca-search` — Talenteca México (Corporate, engineering, technical, and operational roles nationwide).
+- `occ-search` — OCC Mundial (Dominant Mexican professional job board for mid-to-senior and corporate roles).
+- `indeedmx-search` — Indeed México (Broad national coverage).
+- `linkedin-search` — LinkedIn public job search (Country-agnostic and Mexico filters).
 
-## Search Sites
+### 3. Remote Tech & Knowledge Work
+- `getonbrd-search` — Get on Board (Leading LATAM tech, remote, and digital roles).
+- `remotive-search` — Remotive (Global remote tech, support, and marketing with LATAM coverage).
+- `remoteok-search` — RemoteOK (Global remote positions).
+- `weworkremotely-search` — We Work Remotely (Remote customer support, tech, and operations).
+- `freehire-search` — FreeHire Aggregator (Aggregates ~50 ATS platforms worldwide).
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+---
 
-Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+## Universal Query Templates & Categories
 
-## Query Categories
+Below are nationwide query templates across diverse occupational sectors in Mexico. Adapt these templates to your target discipline during `/setup` or when running `/scrape`.
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+### 1. Administration, Human Resources & Operations (Administración y RH)
+- `site:computrabajo.com/trabajo-de- "auxiliar administrativo" [CIUDAD]`
+- `site:computrabajo.com/trabajo-de- "coordinador de operaciones" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "analista de recursos humanos" [CIUDAD]`
+- `site:occ.com.mx "generalista de rh" OR "coordinador de reclutamiento" [CIUDAD]`
+- `site:linkedin.com/jobs "operations coordinator" OR "asistente de direccion" México`
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
+### 2. Logistics, Supply Chain & Warehouse (Logística y Cadena de Suministro)
+- `site:computrabajo.com/trabajo-de- "supervisor de almacen" OR "embarques" [CIUDAD]`
+- `site:occ.com.mx "analista de logistica" OR "planeacion de demanda" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "coordinador de trafico" OR "compras" [CIUDAD]`
+- `site:linkedin.com/jobs "supply chain specialist" OR "comprador sr" México`
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+### 3. Sales, Customer Service & Account Management (Ventas y Atención a Clientes)
+- `site:computrabajo.com/trabajo-de- "ejecutivo de cuenta" OR "ventas corporativas" [CIUDAD]`
+- `site:occ.com.mx "gerente de ventas" OR "business development" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "ejecutivo comercial b2b" [CIUDAD]`
+- `site:linkedin.com/jobs "account executive" OR "customer success manager" remoto México`
 
-These match your strongest and most desired career direction.
+### 4. Finance, Accounting & Auditing (Finanzas y Contabilidad)
+- `site:computrabajo.com/trabajo-de- "contador general" OR "auxiliar contable" [CIUDAD]`
+- `site:occ.com.mx "analista financiero" OR "auditor interno" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "cuentas por cobrar" OR "cuentas por pagar" [CIUDAD]`
+- `site:linkedin.com/jobs "financial analyst" OR "contabilidad general" México`
 
-```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
-```
+### 5. Manufacturing, Quality & Industrial Engineering (Ingeniería y Manufactura)
+- `site:computrabajo.com/trabajo-de- "ingeniero de calidad" OR "ingeniero de procesos" [CIUDAD]`
+- `site:occ.com.mx "ingeniero industrial" OR "mejora continua" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "supervisor de produccion" OR "mantenimiento industrial" [CIUDAD]`
+- `site:linkedin.com/jobs "quality engineer" OR "process engineer" México`
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### 6. Information Technology, Systems & Digital (Tecnologías de Información)
+- `site:computrabajo.com/trabajo-de- "soporte tecnico" OR "administrador de sistemas" [CIUDAD]`
+- `site:occ.com.mx "analista de datos" OR "desarrollador de software" [CIUDAD]`
+- `site:talenteca.com/mexico/empleo "ingeniero de soporte ti" [CIUDAD]`
+- `site:linkedin.com/jobs "systems engineer" OR "cloud engineer" OR "data analyst" México`
+- `site:getonbrd.com "soporte" OR "sysadmin" OR "devops" "mexico"`
 
-These match your domain expertise.
+---
 
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
+## Geographic & Location Filters
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
+Mexican job markets vary widely by economic hub. When running `/scrape` or filtering listings:
 
-Adjacent roles you could pivot into.
+### Main Urban & Industrial Hubs:
+- **Monterrey y Zona Metropolitana**: Monterrey, San Pedro Garza García, San Nicolás de los Garza, Apodaca, Guadalupe, Santa Catarina, General Escobedo, Pesquería.
+- **Ciudad de México y Área Metropolitana (CDMX / Edomex)**: Miguel Hidalgo, Cuauhtémoc, Álvaro Obregón, Benito Juárez, Santa Fe, Tlalnepantla, Naucalpan.
+- **Guadalajara y Bajío**: Guadalajara, Zapopan, Tlaquepaque, Querétaro, San Luis Potosí, León / Silao.
+- **Frontera Norte**: Tijuana, Ciudad Juárez, Reynosa, Saltillo / Ramos Arizpe.
+- **Remoto Nacional / LATAM**: "remoto México", "home office México", "teletrabajo".
 
-```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
-```
+---
 
-### Priority 4: Broader Technical / Consulting
+## Language & Date Filters
 
-Wider net for general technical roles.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
-```
-
-## Location Filter
-
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
-
-## Language Filter
-
-Your working languages and levels are in CLAUDE.md's Languages table. When filtering scraped results, apply `04-job-evaluation.md`'s Language Gate: a posting requiring a language you haven't declared at all is excluded; a posting requiring a higher level than you declared in a language you do work in is not excluded, flag it clearly instead (see `job-scraper/SKILL.md`'s Step 3 "Quick Fit Assessment" for how the flag surfaces in `/scrape` output). Postings simply *written* in a language you don't work in, that don't require it on the job, are fine.
-
-## Date Filter
-
-Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag as "date unknown".
-
-## Adapting Queries
-
-If the user specifies a focus area, select queries from the matching category and also generate 2-3 custom queries for that focus. For example:
-- "/scrape [focus_area]" -> relevant category queries + custom focus-specific queries
+- **Language Filter**: Matches the candidate's stated proficiency in `CLAUDE.md`. Postings requiring a higher level of a second language than stated are highlighted for candidate review.
+- **Posting Recency**: By default, `/scrape` targets vacancies published in the last 14 days to maximize application response rates.

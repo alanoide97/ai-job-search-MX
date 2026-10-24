@@ -1,0 +1,6 @@
+{
+  "name": "liverpool-search",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/cli.ts"
+}

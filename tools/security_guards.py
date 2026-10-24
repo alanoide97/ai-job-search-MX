@@ -59,10 +59,12 @@ ALLOWED_PERMISSIONS = {
     # matching what each SKILL.md already declares in its allowed-tools.
     # A portal added by /add-portal needs its own entry here and in
     # .claude/settings.json - that review step is the point.
-    "Bash(bun run .agents/skills/jobbank-search/cli/src/cli.ts:*)",
-    "Bash(bun run .agents/skills/jobdanmark-search/cli/src/cli.ts:*)",
-    "Bash(bun run .agents/skills/jobindex-search/cli/src/cli.ts:*)",
-    "Bash(bun run .agents/skills/jobnet-search/cli/src/cli.ts:*)",
+    "Bash(bun run .agents/skills/*/cli/src/cli.ts:*)",
+    "Bash(node .agents/skills/*/cli/src/cli.mjs:*)",
+    "Bash(python -m tools.sf_toolkit.cli:*)",
+    "Bash(python3 -m tools.sf_toolkit.cli:*)",
+    "Bash(python tools/sf_toolkit/cli.py:*)",
+    "Bash(python3 tools/sf_toolkit/cli.py:*)",
     "Bash(bun run .agents/skills/linkedin-search/cli/src/cli.ts:*)",
     "Bash(bun run .agents/skills/freehire-search/cli/src/cli.ts:*)",
     "Bash(python salary_lookup.py:*)",
@@ -204,9 +206,14 @@ REQUIRED_IGNORE_RULES = [
 # ALLOWED_PERMISSIONS, so the widening is explicit and reviewable.
 ALLOWED_IGNORE_NEGATIONS = {
     "!cover_letters/OpenFonts/fonts/**",
+    "!cover_letters/cover.cls",
     "!cv/main_example.tex",
     "!cover_letters/cover_example.tex",
     "!documents/**/.gitkeep",
+    "!documents/cv/sf_candidate_profile.example.json",
+    "!.env.example",
+    "!job_scraper/.gitkeep",
+    "!upskill/.gitkeep",
 }
 
 # Hook commands the template legitimately ships, as "<Event>:<command>" strings.
@@ -330,8 +337,17 @@ def _own_cli_grant(path: Path) -> set:
         return set()
     parts = rel.split("/")
     if len(parts) == 4 and parts[:2] == [".agents", "skills"] and parts[3] == "SKILL.md":
-        cli = f"bun run .agents/skills/{parts[2]}/cli/src/cli.ts"
-        return {f"Bash({cli} *)", f"Bash({cli}:*)"}
+        p = parts[2]
+        return {
+            f"Bash(bun run .agents/skills/{p}/cli/src/cli.ts *)",
+            f"Bash(bun run .agents/skills/{p}/cli/src/cli.ts:*)",
+            f"Bash(node .agents/skills/{p}/cli/src/cli.mjs *)",
+            f"Bash(node .agents/skills/{p}/cli/src/cli.mjs:*)",
+            "Bash(python -m tools.sf_toolkit.cli *)",
+            "Bash(python -m tools.sf_toolkit.cli:*)",
+            "Bash(python3 -m tools.sf_toolkit.cli *)",
+            "Bash(python3 -m tools.sf_toolkit.cli:*)",
+        }
     return set()
 
 

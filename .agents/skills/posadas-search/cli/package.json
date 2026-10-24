@@ -1,0 +1,11 @@
+{
+  "name": "posadas-search-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "posadas-search": "./src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "computrabajo-cli",
+  "version": "1.0.0",
+  "description": "STUB — Computrabajo México skill is currently disabled (bot/cookie-gated 302 redirect). See SKILL.md.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "computrabajo-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts"
+  },
+  "dependencies": {}
+}

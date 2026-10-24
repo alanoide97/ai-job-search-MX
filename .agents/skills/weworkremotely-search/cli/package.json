@@ -1,0 +1,13 @@
+{
+  "name": "weworkremotely-cli",
+  "version": "1.1.0",
+  "description": "CLI for searching We Work Remotely via headless Chromium (Playwright) — clears the Cloudflare challenge that blocks plain fetch. Runs under Node.",
+  "type": "module",
+  "bin": {
+    "weworkremotely-search": "src/cli.mjs"
+  },
+  "scripts": {
+    "start": "node src/cli.mjs"
+  },
+  "dependencies": {}
+}

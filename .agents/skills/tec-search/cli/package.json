@@ -1,0 +1,11 @@
+{
+  "name": "tec-search-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "tec-search": "./src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts"
+  }
+}

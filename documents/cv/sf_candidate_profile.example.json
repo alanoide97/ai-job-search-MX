@@ -1,0 +1,198 @@
+{
+  "credentials": {
+    "email": "candidato.ejemplo@example.com",
+    "default_password": "Password123!",
+    "fallback_password": "Password123!"
+  },
+  "personal": {
+    "first_name": "Juan Carlos",
+    "first_name_short": "Juan",
+    "middle_name": "Carlos",
+    "last_name_paternal": "Pérez",
+    "last_name_maternal": "Gómez",
+    "full_last_name": "Pérez Gómez",
+    "full_name": "Juan Carlos Pérez Gómez",
+    "email": "candidato.ejemplo@example.com",
+    "phone_country_code": "52",
+    "phone_country_code_plus": "+52",
+    "phone_number": "8112345678",
+    "phone_formatted": "+52 81 1234 5678",
+    "birth_date_ddmmyyyy": "15/05/1995",
+    "birth_date_iso": "1995-05-15",
+    "birth_day": "15",
+    "birth_month": "05",
+    "birth_year": "1995",
+    "birth_country": "México",
+    "birth_state": "Nuevo León",
+    "birth_city": "Monterrey",
+    "nationality": "Mexicana",
+    "country": "México",
+    "gender_es": "Masculino",
+    "gender_alt_es": "Hombre",
+    "gender_en": "Male",
+    "marital_status_es": "Soltero",
+    "marital_status_en": "Single",
+    "curp": "PERJ950515HNLXXX01",
+    "rfc": "PERJ950515XX1",
+    "nss": "12345678901",
+    "linkedin": "https://www.linkedin.com/in/ejemplo"
+  },
+  "address": {
+    "street": "Avenida Constitución",
+    "street_accented": "Avenida Constitución",
+    "exterior_number": "100",
+    "interior_number": "",
+    "street_full": "Avenida Constitución 100",
+    "colonia": "Centro",
+    "city": "Monterrey",
+    "municipality": "Monterrey",
+    "state": "Nuevo León",
+    "state_plain": "Nuevo Leon",
+    "postal_code": "64000",
+    "country": "México",
+    "country_en": "Mexico"
+  },
+  "preferences": {
+    "willing_to_relocate": false,
+    "willing_to_relocate_es": "No",
+    "willing_to_relocate_en": "No",
+    "willing_to_travel": false,
+    "willing_to_travel_es": "No",
+    "willing_to_travel_en": "No",
+    "work_scheme_es": "Híbrido",
+    "work_scheme_alt_es": "Tiempo completo",
+    "legally_authorized_mx": true,
+    "currently_employed": false,
+    "previously_employed_at_target": false,
+    "relatives_at_target": false,
+    "how_did_you_hear_es": [
+      "Bolsas de Trabajo",
+      "Bolsa de trabajo",
+      "Internet",
+      "Página web",
+      "Portal de empleo",
+      "LinkedIn",
+      "Otro"
+    ],
+    "how_did_you_hear_en": [
+      "Job Board",
+      "Company Website",
+      "Internet",
+      "LinkedIn",
+      "Other"
+    ],
+    "salary_floor_mxn": 10000,
+    "salary_tiers_mxn": {
+      "entry": {
+        "current": "16000",
+        "expected_num": "18000",
+        "expected_range": "18000 - 22000 MXN mensuales netos"
+      },
+      "mid": {
+        "current": "20000",
+        "expected_num": "24000",
+        "expected_range": "22000 - 28000 MXN mensuales netos"
+      },
+      "senior": {
+        "current": "26000",
+        "expected_num": "32000",
+        "expected_range": "30000 - 38000 MXN mensuales netos"
+      }
+    }
+  },
+  "education": [
+    {
+      "institution_es": "Universidad Autónoma de Nuevo León",
+      "institution_short": "UANL",
+      "institution_en": "Autonomous University of Nuevo Leon",
+      "degree_es": "Ingeniería en Tecnologías de Software",
+      "degree_en": "B.S. in Software Technology Engineering",
+      "level_es": [
+        "Licenciatura / Ingeniería",
+        "Licenciatura",
+        "Profesional",
+        "Universitario",
+        "Grado universitario"
+      ],
+      "level_en": [
+        "Bachelor's Degree",
+        "Bachelor",
+        "Undergraduate"
+      ],
+      "status_es": [
+        "Pasante",
+        "Egresado",
+        "Carta de pasante",
+        "Kardex",
+        "Estudios concluidos",
+        "Trunco / Pasante"
+      ],
+      "status_en": [
+        "Completed Coursework",
+        "Coursework Completed",
+        "Attended",
+        "In Progress / Incomplete"
+      ],
+      "is_titled": false,
+      "cedula": "",
+      "start_month": "08",
+      "start_year": "2016",
+      "start_date_ddmmyyyy": "01/08/2016",
+      "end_month": "06",
+      "end_year": "2020",
+      "end_date_ddmmyyyy": "30/06/2020",
+      "city": "San Nicolás de los Garza",
+      "state": "Nuevo León",
+      "country": "México"
+    }
+  ],
+  "work_experience": [
+    {
+      "company": "Empresa de Tecnología Ejemplo",
+      "company_short": "Empresa Ejemplo",
+      "title_payroll": "Especialista de Sistemas",
+      "title_display_es": "Especialista de Sistemas & Soporte TI",
+      "title_display_en": "Systems Specialist & IT Support",
+      "start_month": "01",
+      "start_year": "2023",
+      "start_date_ddmmyyyy": "01/01/2023",
+      "end_month": "12",
+      "end_year": "2025",
+      "end_date_ddmmyyyy": "31/12/2025",
+      "current": false,
+      "city": "Monterrey",
+      "state": "Nuevo León",
+      "country": "México",
+      "reason_for_leaving_es": "Fin de proyecto / Fin de contrato",
+      "reason_for_leaving_en": "End of contract / Project completion",
+      "description_es": "Soporte a infraestructura, administración de identidades en Active Directory y gestión de servicios de soporte.",
+      "description_en": "Infrastructure support, Active Directory identity management, and systems administration."
+    }
+  ],
+  "languages": [
+    {
+      "language_es": "Español",
+      "language_en": "Spanish",
+      "speaking_es": ["Nativo", "Fluido", "Avanzado", "Dominio completo"],
+      "reading_es": ["Nativo", "Fluido", "Avanzado", "Dominio completo"],
+      "writing_es": ["Nativo", "Fluido", "Avanzado", "Dominio completo"],
+      "level_en": ["Native", "Fluent", "Proficient"]
+    },
+    {
+      "language_es": "Inglés",
+      "language_en": "English",
+      "speaking_es": ["Avanzado", "Fluido", "Profesional", "Intermedio Alto"],
+      "reading_es": ["Avanzado", "Fluido", "Profesional", "Dominio completo"],
+      "writing_es": ["Avanzado", "Fluido", "Profesional", "Intermedio Alto"],
+      "level_en": ["Advanced", "Fluent", "Proficient", "C1"]
+    }
+  ],
+  "skills": [
+    "Soporte Técnico L2/L3",
+    "Active Directory",
+    "Microsoft 365",
+    "Linux",
+    "Redes TCP/IP",
+    "SQL"
+  ]
+}
