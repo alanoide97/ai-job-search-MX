@@ -191,7 +191,7 @@ def resolve_salary_for_role(
     salary_override: Optional[int | str] = None,
     profile: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, str]:
-    """Calculate role-appropriate salary strings (numeric and range) with a $10,000 MXN floor.
+    """Calculate role-appropriate salary strings (numeric and range) parameterized by profile preferences and env.
 
     Returns dict with keys:
       - 'tier': 'entry' | 'mid' | 'senior' | 'override'
@@ -203,12 +203,14 @@ def resolve_salary_for_role(
     """
     prof = profile or load_candidate_profile()
     prefs = prof.get("preferences", {})
-    floor = int(prefs.get("salary_floor_mxn", 10000))
+    env_floor = os.getenv("SALARY_FLOOR_MXN")
+    floor = int(env_floor) if env_floor and env_floor.isdigit() else int(prefs.get("salary_floor_mxn", 0))
     tiers = prefs.get("salary_tiers_mxn", {})
 
     if salary_override is not None and str(salary_override).strip():
         digits = re.findall(r"\d+", str(salary_override))
-        val = max(floor, int(digits[0])) if digits else 20000
+        fallback_val = int(os.getenv("SALARY_EXPECTED_MID_MXN", "20000"))
+        val = max(floor, int(digits[0])) if digits else fallback_val
         cur = max(floor, int(val * 0.85))
         high = int(val * 1.15)
         return {
@@ -234,11 +236,8 @@ def resolve_salary_for_role(
         "gerente",
         "architect",
         "arquitecto",
-        "sre",
-        "devops",
-        "cloud engineer",
-        "platform engineer",
-        "l3",
+        "director",
+        "principal",
     )
     entry_kw = (
         "auxiliar",
@@ -247,9 +246,6 @@ def resolve_salary_for_role(
         "trainee",
         "intern",
         "ayudante",
-        "l1",
-        "nivel 1",
-        "mesa de ayuda",
         "asistente",
         "junior",
         " jr",
@@ -257,14 +253,18 @@ def resolve_salary_for_role(
 
     if any(k in combined for k in senior_kw):
         tier_name = "senior"
+        default_exp = int(os.getenv("SALARY_EXPECTED_SENIOR_MXN", "30000"))
     elif any(k in combined for k in entry_kw):
         tier_name = "entry"
+        default_exp = int(os.getenv("SALARY_EXPECTED_ENTRY_MXN", "16000"))
     else:
         tier_name = "mid"
+        default_exp = int(os.getenv("SALARY_EXPECTED_MID_MXN", "22000"))
 
     tier_cfg = tiers.get(tier_name, {})
-    cur_num = max(floor, int(tier_cfg.get("current", 20000)))
-    exp_num = max(floor, int(tier_cfg.get("expected_num", 24000)))
+    default_cur = int(default_exp * 0.85)
+    cur_num = max(floor, int(tier_cfg.get("current", default_cur)))
+    exp_num = max(floor, int(tier_cfg.get("expected_num", default_exp)))
     exp_range = tier_cfg.get("expected_range", f"{exp_num} - {int(exp_num * 1.2)} MXN mensuales netos")
 
     return {

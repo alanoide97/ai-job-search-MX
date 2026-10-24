@@ -279,13 +279,14 @@ def resolve_screening_answer(
             return True, f"No he laborado anteriormente en {comp_label}."
         return True, ["No", "No aplica"]
 
-    # 7. Alumni / Prior studies at Tec / Matrícula
-    if "estudios iniciados o concluidos en el tec" in norm or "matricula" in norm:
+    # 7. Alumni / Prior studies / Matrícula
+    if any(k in norm for k in ("estudios iniciados", "concluidos en la institucion", "matricula", "exalumno", "alumni")):
+        edu_list = prof.get("education", [])
+        top_edu = edu_list[0] if edu_list else {}
+        inst = top_edu.get("institution_es") or top_edu.get("institution_en") or "otra institución"
+        deg = top_edu.get("degree_es") or top_edu.get("degree_en") or "mis estudios"
         if widget_type in ("textarea", "text"):
-            return (
-                True,
-                "No, mis estudios universitarios de Ingeniería Industrial y de Sistemas son de la UAdeC.",
-            )
+            return True, f"Mis estudios universitarios de {deg} fueron cursados en {inst}."
         return True, ["No", "No aplica"]
 
     # 8. Relatives working at company / Conflict of interest
@@ -315,7 +316,8 @@ def resolve_screening_answer(
             "willing to travel",
         )
     ):
-        return True, ["No", "0%", "Ninguna"] if widget_type in ("combobox", "select", "radio") else "No"
+        reloc_pref = prefs.get("willing_to_relocate_es", "No")
+        return True, [reloc_pref, "0%", "Ninguna"] if widget_type in ("combobox", "select", "radio") else reloc_pref
 
     # 10. Why do you want to work at [Company]? / Motivation
     if any(
@@ -330,55 +332,38 @@ def resolve_screening_answer(
     ):
         comp_name = company or "su organización"
         role_name = role or "esta posición"
+        headline = prefs.get("headline", os.getenv("CANDIDATE_HEADLINE", "profesional"))
+        summary = prefs.get("summary", os.getenv("CANDIDATE_SUMMARY", ""))
+        exp_years = os.getenv("CANDIDATE_EXPERIENCE_YEARS", "varios")
+        skills_summary = ", ".join(prof.get("skills", [])[:4])
         return (
             True,
-            f"Me entusiasma la solidez operativa e innovación tecnológica de {comp_name}. "
-            f"Cuento con más de 5 años de experiencia en soporte empresarial L2, administración de identidades "
-            f"(Active Directory / Microsoft Entra ID), gestión de plataformas Microsoft 365 y resolución de incidentes "
-            f"bajo SLAs estrictos, por lo que puedo aportar valor inmediato en el puesto de {role_name}.",
+            f"Me entusiasma la solidez operativa e innovación de {comp_name}. "
+            f"Cuento con sólida experiencia ({headline}) aplicando competencias clave como {skills_summary}, "
+            f"con enfoque en calidad y cumplimiento de objetivos en el puesto de {role_name}.",
         )
 
-    # 11. Known IT / Technical skills & English proficiency yes/no questions
-    known_skill_keywords = (
-        "active directory",
-        "microsoft 365",
-        "office 365",
-        "windows server",
-        "windows 10",
-        "windows 11",
-        "soporte tecnico",
-        "mesa de ayuda",
-        "service desk",
-        "help desk",
-        "redes",
-        "tcp/ip",
-        "vpn",
-        "sql",
-        "linux",
-        "powershell",
-        "intune",
-        "entra id",
-        "azure",
-        "ingles",
-        "english",
-        "disponibilidad inmediata",
-        "resides en monterrey",
-        "radicas en monterrey",
-        "vives en nuevo leon",
-    )
-    if any(k in norm for k in known_skill_keywords):
-        if "nivel de ingles" in norm or "english level" in norm:
+    # 11. Known candidate skills & English proficiency
+    user_skills = [s.lower() for s in prof.get("skills", [])]
+    if any(s in norm for s in user_skills if len(s) > 3):
+        if widget_type in ("combobox", "select", "radio"):
+            return True, ["Sí", "Si", "Yes"]
+        return True, "Sí, cuento con experiencia práctica comprobable."
+
+    if "ingles" in norm or "english" in norm:
+        langs = prof.get("languages", [])
+        eng_prof = next((l for l in langs if "ingl" in l.get("language_es", "").lower() or "eng" in l.get("language_en", "").lower()), None)
+        levels = eng_prof.get("speaking_es", ["Avanzado", "C1", "Fluent"]) if eng_prof else ["Avanzado", "Intermedio", "Fluent"]
+        if "nivel" in norm or "level" in norm:
             return (
                 True,
-                ["Avanzado", "Fluido", "Profesional", "C1", "Advanced", "Fluent"]
-                if widget_type in ("combobox", "select", "radio")
-                else "Avanzado (C1)",
+                levels if widget_type in ("combobox", "select", "radio") else levels[0],
             )
         if widget_type in ("combobox", "select", "radio"):
             return True, ["Sí", "Si", "Yes"]
-        return True, "Sí, cuento con más de 5 años de experiencia práctica."
+        return True, f"Sí ({levels[0]})."
 
-    # 12. Academic title / Cédula question (User has Kardex / Pasante, no título)
+    # 12. Academic title / Cédula question
     if any(
         k in norm
         for k in (
@@ -388,10 +373,18 @@ def resolve_screening_answer(
             "estatus de titulacion",
         )
     ):
+        edu_list = prof.get("education", [])
+        top_edu = edu_list[0] if edu_list else {}
+        is_titled = top_edu.get("is_titled", False)
+        statuses = top_edu.get("status_es", ["Pasante", "En trámite", "No"]) if isinstance(top_edu.get("status_es"), list) else [str(top_edu.get("status_es", "Pasante"))]
         if widget_type in ("combobox", "select", "radio"):
-            # Check if Pasante / En trámite / Kardex is an option; otherwise No
-            return True, ["Pasante", "Egresado", "En trámite", "Kardex", "Carta de pasante", "No"]
-        return True, "Pasante / Kardex completo (Ingeniería Industrial y de Sistemas, UAdeC 2016-2020)"
+            if is_titled:
+                return True, ["Sí", "Titulado", "Titulado (a)"]
+            return True, statuses + ["No", "No titulado"]
+        status_text = statuses[0] if statuses else ("Titulado" if is_titled else "Pasante")
+        inst = top_edu.get("institution_es", "")
+        deg = top_edu.get("degree_es", "")
+        return True, f"{status_text} ({deg}, {inst})"
 
     # 13. Privacy / Ethics / Background check consent
     if any(
@@ -408,52 +401,43 @@ def resolve_screening_answer(
     ):
         return True, ["Sí", "Si", "Acepto", "Estoy de acuerdo", "Yes", "I Agree"]
 
-    # 14. Demographic questions appearing in job-specific screening sections (Estado Civil, Nacionalidad, Migratorio)
+    # 14. Demographic questions appearing in job-specific screening sections
+    personal = prof.get("personal", {})
     if "estado civil" in norm or "marital status" in norm:
+        m_status = personal.get("marital_status_es", "Soltero")
         return (
             True,
-            ["0|Soltero (a)", "Soltero (a)", "Soltero(a)", "Soltero", "Single"]
+            [f"0|{m_status} (a)", f"{m_status} (a)", f"{m_status}(a)", m_status, "Single"]
             if widget_type in ("combobox", "select", "radio")
-            else "Soltero",
+            else m_status,
         )
     if "nacionalidad" in norm or "nationality" in norm:
+        nat = personal.get("nationality", personal.get("country", "Mexicana"))
         return (
             True,
-            ["Mexico", "México", "Mexicana", "Mexican"]
+            [nat, "México", "Mexicana", "Mexican"]
             if widget_type in ("combobox", "select", "radio")
-            else "Mexicana",
+            else nat,
         )
     if "documento migratorio" in norm or "candidato extranjero" in norm:
         return (
             True,
             ["No aplica", "N/A", "No"]
             if widget_type in ("combobox", "select", "radio")
-            else "No aplica (ciudadano mexicano).",
+            else f"No aplica (ciudadano {personal.get('nationality', 'mexicano')}).",
         )
 
-    # 15. Years of experience in digital transformation / logistics / data / IT operations
-    target_domains = (
-        "transformacion digital",
-        "logistica",
-        "abastecimiento",
-        "cadena de suministro",
-        "datos",
-        "analitica",
-        "automatizacion",
-        "operaciones de ti",
-        "sistemas",
-    )
-    if ("cuantos anos de experiencia" in norm or "anos de experiencia tienes" in norm) and (
-        any(k in norm for k in target_domains) or bool(re.search(r"\b(ti|it)\b", norm))
+    # 15. Years of experience matching candidate background
+    if ("cuantos anos de experiencia" in norm or "anos de experiencia tienes" in norm) and any(
+        s in norm for s in user_skills if len(s) > 3
     ):
+        exp_years = os.getenv("CANDIDATE_EXPERIENCE_YEARS", "5")
         if widget_type in ("textarea", "text"):
             return (
                 True,
-                "Cuento con más de 5 años de experiencia en operaciones de TI, automatización de flujos de trabajo "
-                "(Python, SQL, PowerShell), integración de datos e infraestructura empresarial, incluyendo más de 3 años "
-                "participando directamente en proyectos de mejora continua, trazabilidad operativa y digitalización de procesos.",
+                f"Cuento con más de {exp_years} años de experiencia profesional en el área.",
             )
-        return True, ["3 a 5 años", "Más de 5 años", "3-5 años", "5"]
+        return True, [f"Más de {exp_years} años", f"{exp_years}", "3-5 años", "3 a 5 años"]
 
     return False, None
 
