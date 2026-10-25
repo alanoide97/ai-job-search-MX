@@ -8,64 +8,64 @@ There are three paths into setup. Step 0 picks the right one; all three converge
 
 ## Step 0: Welcome & Choose Path
 
-If `$ARGUMENTS` contains `--section <name>`, skip directly to that section in Path C for an update-only flow. Do not run the path-selection prompt below.
+### Fase Pre-flight: Inicialización Automática del Entorno
+Antes de comenzar la entrevista, el agente debe preparar el entorno de forma completamente desatendida y automática:
+1. **Inicializar `.env`**: Verificar si `.env` existe en la raíz. Si no existe, copiar automáticamente `.env.example` a `.env`.
+2. **Dependencias de Python**: Ejecutar `pip install -r requirements.txt` para asegurar que `playwright`, `pypdf`, `openpyxl` y `pytest` estén instalados.
+3. **Navegadores de Playwright**: Ejecutar `playwright install chromium firefox` para garantizar la ejecución de `sf_toolkit` y automatizaciones de postulación.
+4. **Herramientas de búsqueda (29 Portales)**: Ejecutar `python tools/install_portal_clis.py` para instalar las dependencias con Bun.
+5. **Diagnóstico no bloqueante de binarios de sistema**:
+   - Verificar si `bun` está disponible en PATH. Si falta, avisar en español con el comando de instalación de una sola línea (`powershell -c "irm https://bun.sh/install.ps1 | iex"` en Windows o `curl -fsSL https://bun.sh/install | bash` en Unix) y continuar.
+   - Verificar si `lualatex` y `xelatex` están disponibles en PATH. Si faltan, indicar amablemente el enlace de instalación ([MiKTeX](https://miktex.org/download) en Windows o `texlive` en Linux) y continuar con el perfilado.
 
-Otherwise, first check where this working copy would publish to — **before anything is
-written, not after** (the Step 4 privacy note fires only once every file is already on
-disk, which is too late to inform the decision). Run `git remote get-url origin`; if the
-command fails (no remote, or not a git checkout), skip this check silently. If there is
-a GitHub `origin`, check it with `gh repo view <owner/repo> --json visibility,isFork`
-when `gh` is available. If the origin is a **public fork** of the template — or its
-visibility cannot be determined — warn now and wait:
+---
 
-> **Heads-up before we start:** your `origin` points at `<owner/repo>`, which is a
-> public GitHub fork. This setup writes your personal data (name, contact details,
-> employment history, salary expectations) into **tracked** files, and anything you
-> commit *and push* to that fork is visible to anyone. Two safe options: keep your
-> profile commits local and never push them, or push to a **private** repository
-> instead — SETUP.md section 8 has the two-minute private-remote recipe. Want to
-> continue with the setup?
+Si `$ARGUMENTS` contiene `--section <name>`, salta directamente a esa sección en la Ruta C para actualizarla, sin mostrar la selección de ruta.
 
-Wait for the user's confirmation before showing the path prompt. A private origin, no
-origin, or a non-fork remote needs no warning — continue silently.
+Antes de solicitar datos, verifica dónde publicaría esta copia de trabajo:
+Ejecuta `git remote get-url origin`. Si el origen es un **fork público de GitHub**, advierte al usuario en español antes de continuar:
 
-Then, before greeting the user, scan the `documents/` folder. Use Glob with `documents/**/*` and count files per subfolder (`cv/`, `linkedin/`, `diplomas/`, `references/`, `projects/`, `applications/`).
+> **Aviso de privacidad antes de comenzar:** tu repositorio remoto apunta a `<owner/repo>`, el cual es un fork público de GitHub. Esta configuración registrará tus datos personales (nombre, contacto, trayectoria, expectativas salariales) en archivos rastreados por git. Dos opciones seguras: mantén tus commits locales sin subirlos a un fork público, o súbelos a un repositorio privado (ver SETUP.md sección 8). ¿Deseas continuar con la configuración?
 
-Then welcome the user with a single message that lists three paths. The wording changes based on what was found.
+Espera la confirmación del usuario.
 
-**If `documents/` has files** in one or more subfolders, lead with Path A:
+Luego, escanea la carpeta `documents/`. Usa Glob con `documents/**/*` y cuenta los archivos por subcarpeta (`cv/`, `linkedin/`, `diplomas/`, `references/`, `projects/`, `applications/`).
 
-> **Welcome to the AI Job Search setup!**
->
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
->
-> I see files in your `documents/` folder: [list per subfolder, e.g. "2 in cv/, 1 in linkedin/, 3 in references/"]. Three ways to start:
->
-> **Path A: Read my documents folder** (recommended for what you have) - I'll read everything in `documents/`, cross-reference for consistency, and build your profile from real source materials. Idempotent and safe to re-run as you add more documents.
->
-> **Path B: Single CV import** - Paste or @-mention a single CV/resume here. I'll extract it and ask follow-up questions for what's missing.
->
-> **Path C: Interview mode** - I'll walk you through structured questions section by section.
->
-> Which would you like?
+Da la bienvenida al usuario con un mensaje claro en español que presente las tres rutas disponibles:
 
-**If `documents/` is empty or missing**, surface Path A as a "do this if you have materials" option:
+**Si `documents/` contiene archivos**, encabeza con la Ruta A:
 
-> **Welcome to the AI Job Search setup!**
+> **¡Bienvenido a la configuración de AI Job Search (Edición México & LATAM)!**
 >
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> He preparado tu entorno y ahora te ayudaré a construir tu perfil profesional para que podamos evaluar vacantes, adaptar tu CV, redactar cartas de presentación y prepararte para entrevistas.
 >
-> Three ways to start:
+> He detectado archivos en tu carpeta `documents/`: [lista por subcarpeta, ej. "2 en cv/, 1 en linkedin/, 3 en references/"]. Tres opciones para comenzar:
 >
-> **Path A: Documents folder** (best signal if you have several materials) - Drop your CV / LinkedIn export / diplomas / reference letters / project summaries in the `documents/` folder, then say "go". I'll read everything and build your profile from it. See `documents/README.md` for the folder layout.
+> **Ruta A: Leer mi carpeta de documentos** (recomendado para los materiales que tienes) - Leeré todo en `documents/`, contrastaré los datos para verificar coherencia y construiré tu perfil a partir de tus fuentes reales.
 >
-> **Path B: Single CV import** - Paste or @-mention a single CV/resume here. I'll extract it and ask follow-up questions for what's missing.
+> **Ruta B: Importar un solo CV** - Pega o menciona con @ tu CV/resume aquí. Extraeré los datos y te haré preguntas de seguimiento para completar lo faltante.
 >
-> **Path C: Interview mode** - I'll walk you through structured questions section by section. Good if you're starting from scratch.
+> **Ruta C: Modo entrevista** - Te guiaré a través de preguntas estructuradas sección por sección en español.
 >
-> Which would you like?
+> ¿Cuál prefieres?
 
-Wait for the user's choice. If they pick A but the folder is still empty, tell them what to add (point at `documents/README.md`) and stop.
+**Si `documents/` está vacío o no contiene archivos**:
+
+> **¡Bienvenido a la configuración de AI Job Search (Edición México & LATAM)!**
+>
+> He preparado tu entorno y ahora te ayudaré a construir tu perfil profesional para que podamos evaluar vacantes, adaptar tu CV, redactar cartas de presentación y prepararte para entrevistas.
+>
+> Tres opciones para comenzar:
+>
+> **Ruta A: Carpeta de documentos** (la mejor opción si tienes varios archivos) - Coloca tu CV, extracto de LinkedIn, diplomas o cartas en la carpeta `documents/` y escribe "adelante". Consulta `documents/README.md` para ver la distribución.
+>
+> **Ruta B: Importar un solo CV** - Pega o menciona con @ tu CV/resume aquí. Extraeré los datos y te haré preguntas de seguimiento sobre lo que falte.
+>
+> **Ruta C: Modo entrevista** - Te guiaré a través de preguntas estructuradas sección por sección en español. Ideal si estás comenzando desde cero.
+>
+> ¿Cuál prefieres?
+
+Espera la elección del usuario. Si elige la Ruta A pero la carpeta sigue vacía, indícale qué archivos agregar (apunta a `documents/README.md`) y detente.
 
 ---
 
@@ -382,33 +382,41 @@ Replace all placeholder tokens in the search queries file with the user's actual
   - Priority 3: Adjacent roles they could pivot into
   - Priority 4: Broader roles (wider net)
 
+### 10. Sincronizar `.env` con los datos del perfil
+Sincroniza automáticamente los valores extraídos o respondidos en el archivo `.env`:
+- `CANDIDATE_NAME`, `CANDIDATE_FIRST_NAME`, `CANDIDATE_LAST_NAME`
+- `CANDIDATE_EMAIL`, `CANDIDATE_PHONE`, `CANDIDATE_PHONE_DIGITS`
+- `CANDIDATE_LOCATION`, `CANDIDATE_CITY`, `CANDIDATE_STATE`
+- `CANDIDATE_LINKEDIN`
+- `SALARY_FLOOR_MXN`, `SALARY_EXPECTED_*_MXN`
+De este modo, los scripts de postulación (`scripts/config.py`) y la herramienta de SAP SuccessFactors (`sf_toolkit`) quedan completamente funcionales sin requerir edición manual de variables.
+
 ---
 
 ## Step 4: Confirm & Next Steps
 
 Present a summary:
 
-> **Setup complete!** Here's what was generated:
+> **¡Configuración completada con éxito!** Aquí tienes el resumen de lo que se ha generado y sincronizado:
 >
-> - `CLAUDE.md` - Your full candidate profile
-> - `.claude/skills/job-application-assistant/01-candidate-profile.md` - Structured profile
-> - `.claude/skills/job-application-assistant/02-behavioral-profile.md` - Behavioral assessment
-> - `.claude/skills/job-application-assistant/04-job-evaluation.md` - Personalized evaluation framework
-> - `.claude/skills/job-application-assistant/05-cv-templates.md` - CV templates with your profile statements and contact block
-> - `.claude/skills/job-application-assistant/06-cover-letter-templates.md` - Cover letter templates with your contact line and signature
-> - `.claude/skills/job-application-assistant/07-interview-prep.md` - STAR examples from your experience
-> - `cv/main_example.tex` - Your LaTeX CV template
-> - `.claude/skills/job-scraper/search-queries.md` - Job search queries for `/scrape`
+> - `CLAUDE.md` - Tu perfil maestro de candidato
+> - `.env` - Variables de entorno locales sincronizadas con tus datos y salarios
+> - `.claude/skills/job-application-assistant/01-candidate-profile.md` - Perfil estructurado de habilidades y trayectoria
+> - `.claude/skills/job-application-assistant/02-behavioral-profile.md` - Evaluación conductual y estilo de trabajo
+> - `.claude/skills/job-application-assistant/04-job-evaluation.md` - Marco personalizado de ajuste a vacantes
+> - `.claude/skills/job-application-assistant/05-cv-templates.md` - Plantillas de CV con tus declaraciones y bloque de contacto
+> - `.claude/skills/job-application-assistant/06-cover-letter-templates.md` - Plantillas de cartas de presentación con tu firma
+> - `.claude/skills/job-application-assistant/07-interview-prep.md` - Ejemplos STAR basados en tus logros
+> - `cv/main_example.tex` - Tu plantilla de CV en LaTeX personalizada
+> - `.claude/skills/job-scraper/search-queries.md` - Consultas de búsqueda para `/scrape`
 >
-> **Privacy note:** the files above now contain your personal data and are *tracked by git*.
-> A GitHub fork of the template is always public (forks of public repos cannot be made
-> private), so do not push these commits to a fork. Keep them local, or push to a private
-> repository instead - see SETUP.md section 8 for the private-remote setup.
+> **Privacy note:** los archivos anteriores contienen tus datos personales y están *rastreados por git*.
+> Un fork de GitHub de esta plantilla es siempre público (los forks de repositorios públicos no pueden hacerse privados), por lo que no debes subir estos commits a un fork público. Mantenlos locales o súbelos a un repositorio privado (ver SETUP.md sección 8).
 >
-> **Try it out:**
-> - Run `/scrape` to search for matching jobs right now
-> - Run `/apply` with a job posting URL to see the full application workflow
-> - Run `/setup --section search` later to update your search queries as your priorities evolve
+> **¡Pruébalo ahora!**
+> - Ejecuta `/scrape` para buscar vacantes activas que coincidan con tu perfil
+> - Ejecuta `/apply` indicando la URL de una vacante para generar tu postulación personalizada
+> - Ejecuta `/setup --section search` en cualquier momento para actualizar tus criterios de búsqueda
 
 If Path A left any STAR stubs in `07-interview-prep.md`, also note:
 

@@ -2,6 +2,12 @@
 
 Instrucciones paso a paso para inicializar y configurar el marco de trabajo **AI Job Search — Edición México & LATAM**.
 
+> [!TIP]
+> **Inicio Rápido Desatendido:**
+> Si utilizas un agente de IA ([Claude Code](https://claude.com/claude-code), [Google Antigravity](https://github.com/google/antigravity), etc.), simplemente ejecuta `/setup` en la terminal. El comando `/setup` detecta e instala automáticamente las dependencias de Python (`requirements.txt`), navegadores de Playwright, los 29 buscadores de empleo y tu archivo `.env` antes de comenzar la entrevista de perfil en español.
+>
+> Este documento sirve como referencia técnica completa para configuraciones manuales o resolución de problemas.
+
 ---
 
 ## 1. Prerrequisitos del Sistema

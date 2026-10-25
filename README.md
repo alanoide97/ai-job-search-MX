@@ -97,63 +97,23 @@ El framework incluye herramientas CLI especializadas en `.agents/skills/` que se
 
 ## Guía de Inicio Rápido
 
-### 1. Clonar el repositorio
+### 1. Iniciar la configuración integral (`/setup`)
 
-```bash
-git clone https://github.com/alano/ai-job-search-MX.git
-cd ai-job-search-MX
-```
-
-### 2. Instalar dependencias del sistema y módulos
-
-Crea tu entorno virtual e instala los paquetes de Python requeridos (`requirements.txt`):
-
-```bash
-# Crear y activar entorno virtual
-python -m venv .venv
-# En Windows: .\.venv\Scripts\Activate.ps1 | En Linux/macOS: source .venv/bin/activate
-
-# Instalar dependencias Python
-pip install -r requirements.txt
-
-# Descargar navegadores para Playwright (Firefox para sf_toolkit y Chromium)
-playwright install chromium firefox
-```
-
-Instala las dependencias de los 29 buscadores CLI nativos con Bun:
-
-```bash
-python tools/install_portal_clis.py
-```
-
-### 3. Configurar variables de entorno y perfil (`.env` y `sf_candidate_profile.json`)
-
-Copia la plantilla de variables de entorno y ajusta tus datos y umbrales salariales en MXN:
-
-```bash
-cp .env.example .env   # En PowerShell: Copy-Item .env.example .env
-```
-
-*(Opcional para portales corporativos SAP SuccessFactors)*:
-```bash
-cp documents/cv/sf_candidate_profile.example.json documents/cv/sf_candidate_profile.json
-```
-
-Tanto `.env` como `documents/` están protegidos en `.gitignore` para garantizar cero fugas de datos personales.
-
-### 4. Configurar tu perfil con la entrevista en español (`/setup`)
-
-Inicia tu agente de IA (Claude Code, Google Antigravity, etc.) y ejecuta:
+Inicia tu agente de IA ([Claude Code](https://claude.com/claude-code), [Google Antigravity](https://github.com/google/antigravity), etc.) en la terminal del proyecto y ejecuta:
 
 ```text
 /setup
 ```
 
-El asistente te guiará con una entrevista conversacional estructurada en **Español** para construir tu perfil profesional (educación, experiencia laboral, habilidades técnicas, metas, sueldo deseado y empresas objetivo en México).
+El comando `/setup` se encarga de todo el proceso de inicio de manera desatendida y automática:
+- **Dependencias y Navegadores**: Instala las librerías requeridas (`requirements.txt`) y los motores de Playwright (`chromium`, `firefox`).
+- **Buscadores de Empleo**: Instala las dependencias de los 29 buscadores CLI para México y LATAM.
+- **Variables de Entorno**: Inicializa tu archivo local `.env` a partir de `.env.example`.
+- **Entrevista de Perfil en Español**: Te guía con preguntas conversacionales para construir tu perfil profesional, metas, salarios en MXN y compilar tu CV en LaTeX.
 
-Para una guía detallada paso a paso, consulta [**`SETUP.md`**](SETUP.md).
+> Para instrucciones avanzadas de instalación manual, consulta la [**Guía Detallada (SETUP.md)**](SETUP.md).
 
-### 5. Buscar vacantes en vivo (`/scrape`)
+### 2. Buscar vacantes en vivo (`/scrape`)
 
 ```text
 /scrape
@@ -161,7 +121,7 @@ Para una guía detallada paso a paso, consulta [**`SETUP.md`**](SETUP.md).
 
 Ejecutará los buscadores habilitados en `.agents/skills/`, eliminará duplicados y presentará una lista de vacantes ordenadas por afinidad con tu perfil profesional.
 
-### 6. Postularse a una vacante (`/apply`)
+### 3. Postularse a una vacante (`/apply`)
 
 ```text
 /apply https://jobs.cemex.com/job/Monterrey-Ejemplo/12345/
