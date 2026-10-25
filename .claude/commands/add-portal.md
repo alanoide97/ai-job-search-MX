@@ -20,12 +20,12 @@ Follow these steps **in order**.
 
 ## Step 1: Interview - Portal Basics
 
-Ask the user (skip anything already answered by `$ARGUMENTS`):
+Realiza la entrevista al usuario en español (omite lo que ya esté respondido en `$ARGUMENTS`):
 
-1. **Portal URL** - the job board's public site (e.g. `https://www.seek.com.au`, `https://www.stepstone.de`).
-2. **Skill name** - kebab-case, suffixed `-search` (e.g. `seek-search`, `stepstone-search`). Must not collide with an existing folder in `.agents/skills/`.
-3. **Market and language** - which country/region the portal covers and what language its postings use. This drives the trigger phrases in `SKILL.md` (include local-language terms like the Danish skills do: "ledige stillinger", "jobsøgning").
-4. **A realistic test query** - a job title or skill the user would actually search for, used for the live test in Step 4.
+1. **URL del Portal** - el sitio público de la bolsa de empleo (ej. `https://www.occ.com.mx`, `https://mx.computrabajo.com`).
+2. **Nombre del Skill** - formato kebab-case terminado en `-search` (ej. `occ-search`, `computrabajo-search`). No debe colisionar con una carpeta existente en `.agents/skills/`.
+3. **Mercado e idioma** - qué país/región cubre el portal y qué idioma usan sus publicaciones. Esto define las frases desencadenantes en `SKILL.md` (incluye términos en el idioma local).
+4. **Una consulta de prueba realista** - un título de puesto o habilidad que el usuario realmente buscaría, usada para la prueba en vivo del Paso 4.
 
 ---
 
@@ -137,17 +137,17 @@ Do not proceed to Step 5 until search, detail, and tests all pass.
 
 ## Step 6: Confirm
 
-Present a summary:
+Presenta un resumen al usuario en español:
 
-> **Portal skill `<name>` generated and verified.**
+> **Skill de portal `<name>` generado y verificado con éxito.**
 >
-> - Files: `.agents/skills/<name>/` (SKILL.md, url-reference.md, CLI with tests)
-> - Live test: `search "<test query>"` returned <N> results; `detail` verified on one posting
-> - Data source: <endpoint summary>; <personal-use warning noted, if applicable>
+> - Archivos: `.agents/skills/<name>/` (SKILL.md, url-reference.md, CLI con pruebas)
+> - Prueba en vivo: `search "<test query>"` devolvió <N> resultados; `detail` verificado en una publicación
+> - Fuente de datos: <resumen de endpoints>; <aviso de uso personal si aplica>
 >
-> Try it: `bun run .agents/skills/<name>/cli/src/cli.ts search -q "<test query>" --format table`
+> Pruébalo ejecutando: `bun run .agents/skills/<name>/cli/src/cli.ts search -q "<test query>" --format table`
 >
-> Per upstream policy, market-specific skills like this live in your fork rather than being PR'd upstream. If the portal changes its markup later, `url-reference.md` records the parsing anchors to update.
+> Por política del repositorio, los skills específicos de mercado viven en tu fork local. Si el portal cambia su maquetado en el futuro, `url-reference.md` documenta los selectores a actualizar.
 
 ---
 

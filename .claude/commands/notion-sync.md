@@ -28,7 +28,7 @@ Follow these steps **in order**.
 The command is **silently optional**: when the destination is not reachable, the outcome is one clear message and a clean exit - nothing else in the framework notices this command exists.
 
 1. Check that Notion MCP tools are available in this session (tool names starting with `mcp__notion__` or similar). Determine this from the session's own tool list **only** - never by running shell commands like `claude mcp list`, which would interrupt the user with a permission prompt before the graceful exit. If the tools are not available, stop and tell the user how to connect:
-   > Notion MCP isn't connected. Run `claude mcp add --transport http notion https://mcp.notion.com/mcp`, then start a **new session** (servers added mid-session are only picked up on restart), run `/mcp` there to complete the OAuth login, and re-run `/notion-sync`.
+   > Notion MCP no está conectado. Ejecuta `claude mcp add --transport http notion https://mcp.notion.com/mcp`, luego inicia una **nueva sesión** (los servidores agregados a mitad de sesión solo se reconocen al reiniciar), ejecuta `/mcp` allí para completar el inicio de sesión OAuth y vuelve a ejecutar `/notion-sync`.
 2. Verify the connection with one cheap call (e.g. a workspace search). An auth error → tell the user to re-authenticate via `/mcp` and stop. Never retry in a loop.
 3. The Notion MCP server is interactively authenticated, so "connected but not authenticable right now" (expired OAuth, headless/CI context where the login flow cannot run) gets the same graceful exit as "not configured": state the reason in one line and stop. This includes the configured-but-unauthenticated state where the server exposes only its auth handshake and no data tools - **never initiate the OAuth flow from this command and never ask whether to authenticate now**; the one line points at `/mcp` and the command ends there. Authenticating is the user's move, made outside this command.
 
@@ -113,13 +113,15 @@ Keep the page under ~40 blocks; this is a briefing, not a mirror of the posting.
 
 ## Step 6: Report
 
+Presenta el reporte al usuario en español:
+
 ```
-## Pipeline Sync - YYYY-MM-DD
+## Sincronización de Pipeline - YYYY-MM-DD
 
-Database: <database_url>
-Synced <N> jobs (threshold: score ≥ <T>): <C> created, <U> updated, <S> unchanged, <F> failed.
+Base de datos: <database_url>
+Se sincronizaron <N> vacantes (umbral: puntuación ≥ <T>): <C> creadas, <U> actualizadas, <S> sin cambios, <F> fallidas.
 
-| | Title | Company | Status | Score |
+| | Puesto | Empresa | Estado | Puntuación |
 |---|-------|---------|--------|-------|
 | ✚ | ... | ... | ranked | 78 |
 | ↻ | ... | ... | interview | 71 |

@@ -10,7 +10,7 @@ Follow these steps **in order**.
 
 ## Step 0: Prerequisites
 
-Confirm the Gmail MCP tools (`mcp__claude_ai_Gmail__*`) are available. If not, tell the user to connect the Gmail integration (claude.ai Settings → Connectors → Gmail) and stop - do not attempt this via Bash, IMAP, or any other channel.
+Confirm the Gmail MCP tools (`mcp__claude_ai_Gmail__*`) are available. If not, indica al usuario en español que debe conectar la integración de Gmail (claude.ai Configuración → Conectores → Gmail) y detén el proceso - do not attempt this via Bash, IMAP, or any other channel.
 
 ---
 
@@ -26,7 +26,7 @@ Confirm the Gmail MCP tools (`mcp__claude_ai_Gmail__*`) are available. If not, t
 
 ## Step 2: Load State
 
-1. Read `job_search_tracker.csv`. If it does not exist, tell the user there is nothing to sync against yet (suggest `/outcome` or `/apply` first) and stop. Do not create it here - `/gmail-sync` never originates new applications, only updates existing ones.
+1. Read `job_search_tracker.csv`. If it does not exist, informa al usuario en español que aún no hay postulaciones para sincronizar (sugiere ejecutar primero `/outcome` o `/apply`) y detén el proceso. Do not create it here - `/gmail-sync` never originates new applications, only updates existing ones.
 2. Read `gmail_sync/state.json` (create if missing: `{"last_sync": null, "processed_message_ids": []}`).
 3. Build the set of **open applications**: tracker rows whose `status` is not **Final** (per the **Tracker status vocabulary** in `/outcome`). For each, derive its archive folder `documents/applications/<company>_<role>/` by the **Subfolder naming** rule in `documents/README.md` and check whether `outcome.md` exists there. Reuse this exact derived path for any write in Step 7a.
 
@@ -80,30 +80,30 @@ For a matched message, classify by content (require the signal phrase in the sub
 
 ## Step 6: Present Proposed Updates
 
-**Nothing has been written yet.** Present every classified change from Step 5 as a single batch, so the user can review the full picture before anything touches the tracker or `outcome.md`:
+**Nothing has been written yet.** Present every classified change from Step 5 as a single batch in Spanish, so the user can review the full picture before anything touches the tracker or `outcome.md`:
 
 ```
-## Gmail Sync - Proposed Updates - YYYY-MM-DD
+## Sincronización de Gmail - Cambios Propuestos - YYYY-MM-DD
 
-Scanned N threads (M new messages) since <lookback date>.
+Se escanearon N hilos (M mensajes nuevos) desde <lookback date>.
 
-### Proposed Changes (reply "approve all", or list which to skip, e.g. "skip 2")
-| # | Company | Role | Signal | Current -> Proposed Status | Source Email (date) |
+### Cambios Propuestos (responde "aprobar todos", o indica cuáles omitir, ej. "omitir 2")
+| # | Empresa | Puesto | Señal | Estado Actual -> Propuesto | Correo de Origen (fecha) |
 |---|---|---|---|---|---|
-| 1 | ... | ... | Interview invite | applied -> interview | "Subject line" (2026-07-10) |
-| 2 | ... | ... | Offer extended | interview -> offer | "Subject line" (2026-07-12) |
-| 3 | ... | ... | Application ack | drafted -> applied, date -> 2026-07-02 | "Subject line" (2026-07-02) |
+| 1 | ... | ... | Invitación a entrevista | applied -> interview | "Asunto" (2026-07-10) |
+| 2 | ... | ... | Oferta extendida | interview -> offer | "Asunto" (2026-07-12) |
+| 3 | ... | ... | Confirmación de postulación | drafted -> applied, fecha -> 2026-07-02 | "Asunto" (2026-07-02) |
 
-A row leaving `drafted` shows its date change in the status cell, as row 3 does: that row was never recorded as submitted, so Step 7a is about to replace the drafting date. Say that the date is taken from the email and ask whether the user knows the real submission date - approving the status move should not silently approve a date they can correct.
+Una fila que sale de `drafted` muestra su cambio de fecha en la celda de estado, como la fila 3: esa postulación nunca se registró formalmente como enviada, por lo que el Paso 7a reemplazará la fecha de redacción. Aclara al usuario que la fecha se extrae del correo y pregúntale si conoce la fecha real de envío.
 
-### Needs Manual Review (conflicting signal - not proposed, use /outcome)
-- **<Company>** - <what conflicted and why it wasn't proposed>
+### Requiere Revisión Manual (señal en conflicto - no se propone cambio, usa /outcome)
+- **<Empresa>** - <conflicto detectado y razón por la cual no se propuso>
 
-### Unmatched Emails (no change proposed)
-- "<subject>" from <sender> - looked job-related but couldn't be confidently linked to a tracked application.
+### Correos No Coincidentes (no se propone ningún cambio)
+- "<asunto>" de <remitente> - parece relacionado con empleo pero no se vinculó con certeza a ninguna postulación rastreada.
 
-### Stale Applications (30+ days, no activity)
-- **<Company>** - last activity YYYY-MM-DD, still `<status>`.
+### Postulaciones Inactivas (30+ días sin actividad)
+- **<Empresa>** - última actividad YYYY-MM-DD, estado actual `<status>`.
 ```
 
 If the Proposed Changes table would be empty, say so briefly and skip straight to Step 8 (Update State) - there is nothing to approve. Offers still land in the Proposed Changes table (the tracker moves to `offer`); it's only `hired`/`offer_declined` that are never proposed.
@@ -112,11 +112,11 @@ If the Proposed Changes table would be empty, say so briefly and skip straight t
 
 ## Step 7: Wait for Approval
 
-Stop here and wait for the user's reply. Do not write anything from this run's classification before an explicit response arrives.
+Detente aquí y espera la respuesta del usuario. Do not write anything from this run's classification before an explicit response arrives.
 
-- "approve all" / "yes" / equivalent → every row in the Proposed Changes table proceeds to Step 7a.
-- A partial response, e.g. "approve 1, skip 2" or "just the interview one" → only the specified rows proceed.
-- "no" / decline / no changes wanted → no rows proceed; go straight to Step 8 (Update State).
+- "aprobar todos" / "approve all" / "sí" / "yes" o equivalente → cada fila en la tabla de Cambios Propuestos procede al Paso 7a.
+- Una respuesta parcial, ej. "aprobar 1, omitir 2" o "solo la de entrevista" → solo las filas especificadas proceden.
+- "no" / rechazar / sin cambios → no procede ninguna fila; ve directo al Paso 8 (Actualizar Estado).
 
 Approving the whole batch in one reply is expected UX - the requirement is that the reply happens first, not that the user approves row by row.
 
@@ -155,24 +155,24 @@ For open applications with **no** matching activity found this run, check the tr
 
 ## Step 10: Present Closing Summary
 
-Confirm what actually happened, distinct from the Step 6 proposal:
+Presenta al usuario un resumen final en español de lo ejecutado:
 
 ```
-## Gmail Sync - Done - YYYY-MM-DD
+## Sincronización de Gmail - Finalizada - YYYY-MM-DD
 
-### Written
-| Company | Role | Signal | Tracker Status | Source Email |
+### Registrado
+| Empresa | Puesto | Señal | Estado en Rastreador | Correo de Origen |
 |---|---|---|---|---|
-| ... | ... | Interview invite | applied -> interview | "Subject line", 2026-07-10 |
+| ... | ... | Invitación a entrevista | applied -> interview | "Asunto", 2026-07-10 |
 
-### Skipped (not written)
-- **<Company>** - <signal> declined by user.
+### Omitido (no registrado)
+- **<Empresa>** - <señal> declinada por el usuario.
 
-### Offers Requiring Your Decision
-- **<Company>** - offer written 2026-07-12 ("<subject>"). Tracker set to `offer`; run `/outcome <company>` to record accept/decline once you decide.
+### Ofertas que Requieren tu Decisión
+- **<Empresa>** - oferta registrada 2026-07-12 ("<asunto>"). Rastreador actualizado a `offer`; ejecuta `/outcome <empresa>` para registrar aceptación/rechazo una vez que decidas.
 
-### Stale Applications (30+ days, no activity)
-- **<Company>** - last activity YYYY-MM-DD, still `<status>`.
+### Postulaciones Inactivas (30+ días sin actividad)
+- **<Empresa>** - última actividad YYYY-MM-DD, estado actual `<status>`.
 ```
 
 If nothing was proposed this run, a brief note is enough instead of an empty summary.

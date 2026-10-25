@@ -34,7 +34,7 @@ python3 tools/rank_state.py candidates --limit 10          # add --all / --focus
 
 It applies the status filter (`new` and `unreachable`, or any status with `--all`), the tracker exclusion (any company+role already in `job_search_tracker.csv` is out of scope regardless of flags - it has been applied to or consciously tracked), the focus filter, and `--limit`, then prints one compact object per candidate (`key`, `title`, `company`, `url`, `portal`, `deadline`, `posted_date`) plus the counts: `eligible`, `deferred` (eligible beyond the limit, kept at their current status so a later run continues the backlog), `excluded_by_tracker`.
 
-If it exits with "not found", tell the user to run `/scrape` first and stop.
+Si devuelve "not found", indica al usuario en español que ejecute `/scrape` primero para recopilar vacantes y detente.
 
 If it reports no candidates, there is nothing to score, but already-ranked jobs still need Step 3's rule 6 expiry sweep. Run:
 
@@ -198,7 +198,7 @@ Rules for the presentation:
 - A job whose `guard` is anything other than `clean` gets a ⚠ marker next to its Title in whichever table it lands, and the verdict line quoted in its "Why these ranked highest" writeup (or next to its row below threshold). It is a signal for the user to read the posting with care before `/apply`, never a veto.
 - Every claim traces to fetched posting text or the profile - no invented details.
 - Say explicitly that these are **triage scores from the posting text only**, and that `/apply` will re-evaluate with company research before anything is drafted.
-- Then ask: "Want to apply to any of these? Give me the number(s) and I'll start with the full `/apply` workflow."
+- Pregunta al usuario en español: "¿Deseas postularte a alguna de estas vacantes? Indica el número o números para iniciar el flujo completo de `/apply`."
 - If the user picks one, run the `/apply` workflow on that job's URL, passing the triage verdict as prior context but **re-running the full Step 1 evaluation** - triage never substitutes for it.
 
 ---

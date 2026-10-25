@@ -162,15 +162,15 @@ Source: [Reference letter — Name / LinkedIn About / Project leadership]
 [more sections as needed]
 ```
 
-Then ask:
+Pregunta al usuario en español:
 
-> **How would you like to proceed?**
+> **¿Cómo deseas proceder?**
 >
-> - **`all`** — Add everything above to your profile
-> - **`review`** — I'll walk you through each source group one at a time
-> - **`skip`** — Cancel without writing anything
+> - **`all`** — Agregar todas las competencias identificadas a tu perfil
+> - **`review`** — Revisar cada grupo de fuentes uno por uno para tu confirmación
+> - **`skip`** — Cancelar sin escribir ningún cambio
 >
-> Or list specific groups to skip (e.g. "skip GitHub, add everything else").
+> O bien indica grupos específicos a omitir (ej. "omitir GitHub, agregar el resto").
 
 Wait for the user's response before writing anything.
 

@@ -35,7 +35,7 @@ Follow these steps **in order**.
    ```
    **If the file exists and its header does not end in `,deadline`, append `,deadline` to the header line only** - no data row is touched. Legacy rows then read as an empty deadline. This is the one edit to an existing tracker this command may make outside a matched row, and Step 4's "never restructure the CSV" governs that row, not this header line.
 2. **With an argument:** match rows case-insensitively on company (and role, if given). One match → proceed. Several → list them and ask. None → the application was made outside the workflow; collect company, role, date applied, channel, and posting URL from the user and add a tracker row.
-3. **Without an argument:** list all rows whose status is not final (see **Tracker status vocabulary** below) as a numbered table (company, role, date applied, current status, deadline, days quiet, follow-ups sent) and ask which to update. The two derived columns come straight from existing data: **days quiet** counts from the row's `date` or the latest dated entry in `notes`, whichever is more recent; **follow-ups sent** counts the `followed up YYYY-MM-DD` markers in `notes`. If any open row is 10+ days quiet with fewer than two follow-ups sent, add one line under the table: "Some of these have gone quiet - want a follow-up draft? (Step 2b)". If any open rows are 60+ days quiet, also offer: "You have applications quiet for 60+ days — run `/outcome stale` to batch-resolve them (Step 2c)." If every row is resolved, say so and stop.
+3. **Without an argument:** list all rows whose status is not final (see **Tracker status vocabulary** below) as a numbered table (company, role, date applied, current status, deadline, days quiet, follow-ups sent) and ask which to update. The two derived columns come straight from existing data: **days quiet** counts from the row's `date` or the latest dated entry in `notes`, whichever is more recent; **follow-ups sent** counts the `followed up YYYY-MM-DD` markers in `notes`. Si alguna fila activa lleva 10+ días sin actividad y menos de 2 seguimientos enviados, añade una línea bajo la tabla en español: "Algunas postulaciones no han tenido respuesta reciente. ¿Deseas redactar un mensaje de seguimiento (follow-up)?". Si alguna lleva 60+ días sin actividad, añade también: "Tienes postulaciones sin actividad por más de 60+ days — ejecuta `/outcome stale` para resolverlas en lote." If every row is resolved, say so and stop.
 
    **`drafted` rows are listed but never counted as quiet** - nothing was sent, so nobody is late replying. List them under their own heading ("Drafted, not yet submitted"), leave **days quiet** and **follow-ups sent** blank, and keep them out of the follow-up offer above.
 
@@ -65,7 +65,7 @@ Canonical spellings for the tracker CSV `status` column (underscores, never spac
 
 ## Step 2: Collect What Happened
 
-Ask the user what happened, then classify:
+Pregunta al usuario en español qué sucedió con la postulación y clasifica el resultado:
 
 **Progress updates** (application still open):
 - Interview invitation / stage scheduled or completed (phone screen, technical, case, final round)
@@ -135,13 +135,13 @@ Otherwise, present qualifying applications as a numbered table:
 | 2 | Beta    | MLE  | 2026-06-01   | 96         | 1               | applied        | no_response     |
 ```
 
-Then ask:
+Pregunta al usuario en español:
 
-> **How would you like to resolve these applications?**
+> **¿Cómo deseas resolver estas postulaciones?**
 >
-> - **`all`** — Mark all [K] applications as `no_response` and update archives
-> - **`select`** — Specify which numbers to resolve (e.g. "1, 3" or "1-4")
-> - **`skip`** — Cancel without making any changes
+> - **`all`** — Marcar todas las [K] postulaciones como `no_response` y actualizar los expedientes
+> - **`select`** — Indicar qué números resolver (ej. "1, 3" o "1-4")
+> - **`skip`** — Cancelar sin realizar ningún cambio
 
 Wait for the user's explicit response before writing anything.
 

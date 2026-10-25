@@ -54,13 +54,13 @@ If `$ARGUMENTS` contains `--use <name>`:
 
 ## Step 1: Template Type and Source
 
-Ask the user (skip anything already answered by `$ARGUMENTS`):
+Pregunta al usuario en español (omite lo que ya esté resuelto en `$ARGUMENTS`):
 
-1. **Type:** Is this a **CV** template or a **cover letter** template?
-2. **Source:** Where is the template? Accept any of:
-   - A path or @-mention of a source file in any toolchain (`.tex` plus optional `.cls`/`.sty`, `.typ` plus optional local packages, or another compile-to-PDF format)
-   - Pasted template content
-   - A directory containing the template and its assets (class/package files, fonts, images)
+1. **Tipo:** ¿Es una plantilla de **CV** o de **carta de presentación** (cover letter)?
+2. **Origen / Fuente:** ¿Dónde se encuentra la plantilla? Puedes proporcionar:
+   - Una ruta o mención con @ de un archivo fuente en cualquier toolchain (`.tex` con `.cls`/`.sty` opcionales, `.typ` con paquetes locales, u otro formato que compile a PDF)
+   - Contenido pegado de la plantilla
+   - Un directorio que contenga la plantilla y sus recursos (archivos de clase/paquetes, fuentes tipográficas, imágenes)
 
 Read every provided file. If the template references an include the declared toolchain doesn't ship by default — a custom `.cls`/`.sty` not part of standard TeX distributions, a Typst package imported via a local `#import`, or an equivalent for another toolchain — confirm the user has the file and ask for it if missing — the template cannot compile without it.
 
@@ -180,18 +180,18 @@ Rules:
 
 ## Step 6: Confirm
 
-Present a summary:
+Presenta un resumen al usuario en español:
 
-> **Template `<name>` registered and activated.**
+> **Plantilla `<name>` registrada y activada con éxito.**
 >
-> - Files: `templates/<type>/<name>/` (skeleton, manifest<, class/package files><, fonts>)
-> - Test compile: passed with `<compile command>` (<N> page(s))
-> - `/apply` will now draft <CVs | cover letters> from this template.
+> - Archivos: `templates/<type>/<name>/` (esqueleto, manifiesto<, archivos de clase/paquetes><, fuentes>)
+> - Compilación de prueba: superada con `<compile command>` (<N> página(s))
+> - `/apply` ahora redactará <CVs | cartas de presentación> a partir de esta plantilla.
 >
-> Useful follow-ups:
-> - `/add-template --list` — see all registered templates
-> - `/add-template --use <other-name>` — switch templates
-> - `/add-template --use default` — go back to the stock <moderncv | cover.cls> template
+> Comandos de seguimiento útiles:
+> - `/add-template --list` — ver todas las plantillas registradas
+> - `/add-template --use <otro-nombre>` — alternar entre plantillas
+> - `/add-template --use default` — volver a la plantilla predeterminada <moderncv | cover.cls>
 
 ---
 

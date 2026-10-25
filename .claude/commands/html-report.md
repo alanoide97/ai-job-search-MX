@@ -122,18 +122,18 @@ Columns with only empty values across all rows may be omitted.
 
 Write the complete HTML to the output path using the Write tool.
 
-Then present:
+Presenta la confirmación al usuario en español:
 
-> **Dashboard generated:** `<output path>`
+> **Panel de control generado con éxito:** `<output path>`
 >
-> Open it in any browser — no server needed.
+> Puedes abrirlo directamente en cualquier navegador web — no requiere servidor.
 >
-> **Summary:**
-> - Applications sent: N · drafted, not yet sent: N
-> - Active: N · Interview: N · Hired: N · Rejected/Closed: N
-> - Funnel: N% progressed past resume screen
+> **Resumen:**
+> - Postulaciones enviadas: N · redactadas, pendientes de envío: N
+> - Activas: N · En entrevista: N · Oferta: N · Rechazada/Cerrada: N
+> - Embudo: N% avanzó más allá del filtro inicial de CV
 >
-> Re-run `/html-report` any time after adding new entries via `/apply` or `/outcome` to refresh the dashboard.
+> Puedes volver a ejecutar `/html-report` en cualquier momento tras registrar nuevas entradas con `/apply` o `/outcome` para actualizar el panel.
 
 ---
 
