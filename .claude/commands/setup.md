@@ -265,88 +265,75 @@ If the user provides a single CV/resume:
 
 ## Path C: Interview Mode
 
-Walk through each section conversationally. Ask questions naturally, not as a form. Let the user answer in their own words and you'll structure the data.
+Walk through each section conversationally. Formula todas las preguntas en español de forma natural y conversacional (no como formulario rígido). Permite que el candidato responda con sus propias palabras y sintetiza la información en perfiles estructurados.
 
 ### Section 1: Identity & Contact
-Ask about:
-- Full name
-- Location (city, country)
-- Phone, email, LinkedIn, GitHub
-- What languages they work in professionally, and roughly what level in each (native, fluent, conversational, a CEFR letter like B2 - whatever's natural for them to describe, doesn't need to be precise). Worth explaining why: a posting requiring a language they don't list at all gets auto-excluded later by the Language Gate, while one asking for a higher level in a language they do list gets flagged for their own judgment instead of silently passed or rejected - so it's worth being honest here rather than optimistic.
-- Current employment status
-- Family/commute constraints (if any)
+Realiza las preguntas en español de manera natural y conversacional:
+- "¿Cuál es tu nombre completo y en qué ciudad y estado/país te encuentras?"
+- "¿Cuáles son tus datos de contacto principales? (Teléfono, correo electrónico, perfiles de LinkedIn y GitHub)."
+- "¿En qué idiomas trabajas profesionalmente y cuál consideras que es tu nivel en cada uno? (Por ejemplo: nativo, bilingüe C1/C2, conversacional B2, etc.)."
+  *Explica brevemente la razón:* las vacantes que exijan un idioma no registrado serán descartadas automáticamente por el filtro de idioma (Language Gate), mientras que aquellas con un nivel superior al registrado se marcarán para revisión manual.
+- "¿Cuál es tu situación laboral actual y disponibilidad para comenzar?"
+- "¿Tienes alguna restricción de traslado, viaje o movilidad familiar?"
 
 ### Section 2: Education
-For each degree:
-- Level (PhD, MSc, BSc, etc.), field, institution, years
-- Thesis topic (if applicable)
-- Key coursework or topics
-
-Also ask about certifications (online courses, professional certs).
+Para cada grado académico o estudio relevante:
+- "¿Qué grado obtuviste (Licenciatura, Ingeniería, Maestría, Doctorado), en qué área o carrera, en qué institución y en qué periodo?"
+- "¿Tuviste algún tema de tesis, proyecto integrador o especialidad destacada?"
+- "¿Cuentas con certificaciones técnicas o cursos profesionales recientes?"
 
 ### Section 3: Professional Experience
-For each role (most recent first):
-- Job title, company, dates, location
-- Key responsibilities (3-5 bullets)
-- Key achievements or projects
-- Technologies/tools used
-
-Also ask about independent projects, freelance work, or side projects.
+Para cada rol profesional (del más reciente al más antiguo):
+- "¿Cuál era tu puesto o título oficial, empresa, periodo (fechas) y ciudad/modalidad?"
+- "¿Cuáles eran tus 3 a 5 responsabilidades y funciones principales en el día a día?"
+- "¿Qué logros, proyectos destacados o métricas medibles alcanzaste en este puesto?"
+- "¿Qué tecnologías, lenguajes, frameworks o herramientas utilizaste activamente?"
+- "¿Tienes proyectos independientes, consultorías freelance o iniciativas personales relevantes?"
 
 ### Section 4: Technical Skills
-- Programming languages + proficiency level
-- ML/AI frameworks and tools
-- Domain expertise
-- Software tools and platforms
-- Any other technical skills
+- "¿Cuáles son tus lenguajes de programación principales y cuál es tu nivel de dominio en cada uno?"
+- "¿Qué frameworks, librerías o herramientas de IA/ML dominas?"
+- "¿En qué áreas de especialización o dominios de industria tienes mayor experiencia?"
+- "¿Qué plataformas en la nube, bases de datos o software empresarial manejas habitualmente?"
 
 ### Section 5: Publications & Awards (optional)
-- Peer-reviewed papers, conference presentations
-- Hackathons, competitions, awards
-- Skip if not applicable
+- "¿Cuentas con publicaciones académicas, patentes, conferencias, artículos técnicos o premios en hackathons/competencias?" (Se omite si no aplica).
 
 ### Section 6: Behavioral Profile (optional)
-If they have a formal assessment (PI, DISC, Myers-Briggs, StrengthsFinder):
-- Ask them to describe or share the results
-
-If not, ask behavioral questions:
-- "What work environments do you thrive in?"
-- "What drains your energy at work?"
-- "How do you prefer to work in teams?"
-- "How do you make decisions, quickly or deliberately?"
-- "What's your communication style?"
-- Synthesize answers into a behavioral profile
+Si el candidato cuenta con una evaluación formal previa (DISC, Predictive Index, CliftonStrengths, Myers-Briggs):
+- Invítale a compartir un resumen o resultados clave.
+Si no cuenta con una evaluación formal, realiza preguntas de exploración conductual:
+- "¿En qué tipo de ambientes de trabajo sientes que rindes al máximo y te desarrollas mejor?"
+- "¿Qué situaciones o dinámicas laborales suelen desgastar tu energía o desmotivarte?"
+- "¿Cómo prefieres colaborar dentro de un equipo de trabajo (autonomía vs. supervisión cercana)?"
+- "¿Cómo tomas decisiones importantes: de forma ágil y rápida, o analítica y reflexiva?"
+- "¿Cuál es tu estilo preferido de comunicación con colegas y líderes?"
+- Sintetiza las respuestas en el perfil conductual.
 
 ### Section 7: Career Goals & Preferences
-- Target roles and industries
-- What excites you in work
-- Deal-breakers and must-haves
-- Salary expectations/baseline (optional)
-- What environments to avoid
-- Commute/location constraints
+- "¿Qué puestos, roles o industrias representan tu objetivo ideal para el siguiente paso en tu carrera?"
+- "¿Qué aspectos te entusiasman más de tu trabajo profesional?"
+- "¿Cuáles son tus condiciones indispensables (must-haves) y qué factores descartarían una oferta de inmediato (deal-breakers)?"
+- "¿Cuáles son tus expectativas salariales netas o brutas mensuales en MXN (sueldo mínimo aceptable y sueldo deseado)?"
+- "¿Qué modalidades de trabajo prefieres (remoto, híbrido, presencial) y en qué zonas o ciudades?"
 
 ### Section 8: References (optional)
-For each reference:
-- Name, title, company, email, phone
-- Relationship to the user
+Para cada referencia profesional disponible:
+- Nombre, puesto, empresa, correo, teléfono y tipo de relación laboral (jefe directo, colega, cliente).
 
 ### Section 9: Job Search Configuration
-This section generates the search queries that power `/scrape`. Use the information from Sections 1, 4, and 7 to build targeted queries.
+Esta sección genera las consultas de búsqueda que alimentan `/scrape`. Utiliza la información previa para construir consultas focalizadas.
 
-Ask about:
-- **Role titles to search for:** Job titles for the same underlying work vary a lot across companies and markets - a "Data Scientist" role at one employer may be called "Insights Analyst" or "Data Consultant" at another. Ask about the function first: "What kind of work do you actually want to be doing day-to-day?" Then translate that into concrete search terms: "Given that, what job titles should I search for? For example: Data Scientist, ML Engineer, Geophysicist." Collect 3-8 specific titles, but keep the underlying function in mind - it feeds the category naming in `search-queries.md` and the Experience Match dimension in `04-job-evaluation.md`.
-- **Key skills as search terms:** "Which of your skills are most likely to appear in job postings?" Pick 3-5 that are distinctive and searchable.
-- **Target companies (optional):** "Are there specific companies you'd like to monitor for openings?"
-- **Geographic scope:** "Which cities or regions should I search in? How far are you willing to commute?" Use this to define the location filter tiers (ideal, acceptable, borderline, too far).
-- **Job portals:** "The framework ships country-agnostic search CLIs (`linkedin-search`, `freehire-search`, enabled by default) plus Danish portal demos (Jobindex, Jobbank, Jobdanmark, Jobnet) that ship **disabled**. `/scrape` auto-discovers whatever portal skills are installed under `.agents/skills/` and skips any with `enabled: false`. Which portals fit your market?" **Then act on the answer:** if the user's market is Denmark (or they ask for the Danish boards), edit each of the four Danish `SKILL.md` files and set `enabled: true` in the frontmatter; otherwise leave them disabled and say so - they cost nothing while disabled and can be enabled later by flipping the flag. If the user needs a local board that is not shipped, guide them to `/add-portal` (market-specific skills live in their fork). WebSearch/`site:` queries remain the fallback for portals without a CLI skill.
-- **CV language:** "Should your CVs be written in English (the default, accepted in most markets), or in your market's language?" Record the answer as a `CV language: <language>` line in CLAUDE.md's Identity section. Cover letters always match each posting's language automatically; this setting governs the CV only. If the user is unsure, keep English and note they can re-run `/setup --section search` to change it.
+Preguntas clave en español:
+- **Títulos de puesto a buscar:** "Más allá del nombre exacto del cargo, ¿qué funciones y responsabilidades prácticas te gustaría desempeñar en tu día a día? Con base en eso, ¿qué títulos de vacante debemos monitorear? (Por ejemplo: Ingeniero de Software, Data Engineer, Líder Técnico, Consultor SAP, etc.)."
+- **Habilidades clave como términos de búsqueda:** "¿Cuáles 3 a 5 habilidades o tecnologías clave tuyas son más distintivas y buscadas en las ofertas de empleo?"
+- **Empresas objetivo en México y LATAM:** "¿Hay empresas específicas en México o internacionales que te interese monitorear prioritariamente? (Por ejemplo: CEMEX, FEMSA/OXXO, Ternium, Arca Continental, Tec de Monterrey, Coppel, H-E-B, etc.)."
+- **Alcance geográfico y modalidad:** "¿En qué ciudades o estados debemos enfocar la búsqueda? (Monterrey, CDMX, Guadalajara, Remoto nacional o internacional)."
+- **Portales de empleo:** "El framework incluye 28 buscadores automáticos para México y LATAM (FEMSA, CEMEX, Arca Continental, Gruma, H-E-B, Soriana, Coppel, AutoZone, Tec de Monterrey, Computrabajo, OCC, Talenteca, Indeed MX, etc.) además de plataformas remotas (Get on Board, RemoteOK, We Work Remotely). ¿Deseas enfocar la búsqueda en portales corporativos directos, en agregadores masivos, o en ambos?"
+- **Idioma del CV:** "¿Prefieres que tu CV principal se compile en Español, en Inglés (estándar para empresas globales), o deseas versiones en ambos idiomas? (Registrar como `CV language: <language>` en CLAUDE.md)."
 
-**Important:** Also suggest role types the user may not have considered, based on their skill profile. For example:
-- If they have strong Python + domain expertise: "Have you considered roles like 'Technical Consultant' or 'Solutions Engineer' in your domain?"
-- If they have ML + a specific industry: "Companies in adjacent industries also hire for these skills. Should I include searches for [adjacent sector]?"
-- If they have project management experience alongside technical skills: "Would you also want to search for 'Technical Project Manager' or 'Team Lead' roles?"
-
-This proactive suggestion step helps users discover career paths they might not have considered.
+**Sugerencias proactivas:**
+Sugiere proactivamente roles adyacentes con base en su combinación de habilidades (ej. Python + dominio de industria -> Solutions Engineer; experiencia en gestión técnica -> Technical Project Manager / Tech Lead).
 
 ---
 

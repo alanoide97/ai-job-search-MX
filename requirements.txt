@@ -1,0 +1,5 @@
+# Core dependencies for AI Job Search (Edición México & LATAM)
+playwright>=1.40.0
+pypdf>=4.0.0
+openpyxl>=3.1.0
+pytest>=8.0.0

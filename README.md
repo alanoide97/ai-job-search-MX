@@ -104,40 +104,54 @@ git clone https://github.com/alano/ai-job-search-MX.git
 cd ai-job-search-MX
 ```
 
-### 2. Instalar herramientas y dependencias
+### 2. Instalar dependencias del sistema y módulos
 
-Instala los módulos de todas las herramientas CLI de búsqueda con un solo comando:
+Crea tu entorno virtual e instala los paquetes de Python requeridos (`requirements.txt`):
+
+```bash
+# Crear y activar entorno virtual
+python -m venv .venv
+# En Windows: .\.venv\Scripts\Activate.ps1 | En Linux/macOS: source .venv/bin/activate
+
+# Instalar dependencias Python
+pip install -r requirements.txt
+
+# Descargar navegadores para Playwright (Firefox para sf_toolkit y Chromium)
+playwright install chromium firefox
+```
+
+Instala las dependencias de los 29 buscadores CLI nativos con Bun:
 
 ```bash
 python tools/install_portal_clis.py
 ```
 
-Si vas a utilizar la suite de automatización `sf_toolkit`, instala sus dependencias de Python y los navegadores de Playwright:
+### 3. Configurar variables de entorno y perfil (`.env` y `sf_candidate_profile.json`)
+
+Copia la plantilla de variables de entorno y ajusta tus datos y umbrales salariales en MXN:
 
 ```bash
-pip install playwright pypdf
-playwright install chromium
+cp .env.example .env   # En PowerShell: Copy-Item .env.example .env
 ```
 
-### 3. Configurar variables de entorno (`.env`)
-
-Copia la plantilla de ejemplo y ajusta tus credenciales y rutas locales:
-
+*(Opcional para portales corporativos SAP SuccessFactors)*:
 ```bash
-cp .env.example .env
+cp documents/cv/sf_candidate_profile.example.json documents/cv/sf_candidate_profile.json
 ```
 
-Consulta los comentarios dentro de `.env.example` para configurar credenciales de portales, llaves de API o el umbral de sueldo mínimo deseado.
+Tanto `.env` como `documents/` están protegidos en `.gitignore` para garantizar cero fugas de datos personales.
 
-### 4. Configurar tu perfil (`/setup`)
+### 4. Configurar tu perfil con la entrevista en español (`/setup`)
 
-Inicia tu agente (por ejemplo, `claude`) y ejecuta:
+Inicia tu agente de IA (Claude Code, Google Antigravity, etc.) y ejecuta:
 
 ```text
 /setup
 ```
 
-El asistente te guiará para configurar tu perfil profesional a partir de tus documentos (CV previo, diplomas, extractos) o mediante una breve entrevista interactiva. Tu perfil maestro quedará almacenado de forma privada en `.claude/skills/job-application-assistant/01-candidate-profile.md` y `documents/cv/`.
+El asistente te guiará con una entrevista conversacional estructurada en **Español** para construir tu perfil profesional (educación, experiencia laboral, habilidades técnicas, metas, sueldo deseado y empresas objetivo en México).
+
+Para una guía detallada paso a paso, consulta [**`SETUP.md`**](SETUP.md).
 
 ### 5. Buscar vacantes en vivo (`/scrape`)
 
