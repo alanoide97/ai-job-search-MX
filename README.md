@@ -9,6 +9,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Bun](https://img.shields.io/badge/bun-1.0+-black.svg)](https://bun.sh)
+[![Donate with Stripe](https://img.shields.io/badge/Donate-Stripe-6772E5?logo=stripe&logoColor=white)](https://buy.stripe.com/14AdR9aId1283pE9CYdby00)
+
+<div align="center">
+
+### Apoya el Proyecto ☕ / Support this Project
+Si esta herramienta te ayuda a optimizar tu búsqueda laboral en México y LATAM, considera apoyar su desarrollo:
+
+[![Donate with Stripe](https://img.shields.io/badge/Donar_con_Stripe-625AFA?style=flat-square&logo=stripe&logoColor=white&labelColor=0A2540)](https://buy.stripe.com/14AdR9aId1283pE9CYdby00)
+
+</div>
 
 **AI Job Search — Edición México & LATAM** es un fork especializado y adaptado para el mercado laboral mexicano y latinoamericano del proyecto original [ai-job-search](https://github.com/ai-job-search-dev/ai-job-search) creado por **Mads Lorentzen**.
 
