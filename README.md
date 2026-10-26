@@ -36,50 +36,13 @@ Convierte a tu agente de IA ([Claude Code](https://claude.com/claude-code), [Goo
 
 ---
 
-## Catálogo de Buscadores de Empleo
+## Portales y Bolsas de Empleo Incluidos
 
-El framework incluye herramientas CLI especializadas en `.agents/skills/` que se descubren y ejecutan automáticamente con `/scrape`:
+El framework rastrea en tiempo real más de **28 plataformas clave** en México, LATAM y remoto internacional:
 
-### 1. Portales Corporativos Directos (Sistemas ATS Enterprise)
-| Portal | Comando CLI | Empresa / Cobertura | Motor ATS |
-| :--- | :--- | :--- | :--- |
-| **CEMEX** | `cemex-search` | CEMEX Oficinas Globales, plantas y logística México | SAP SuccessFactors |
-| **FEMSA / OXXO** | `femsa-search` | FEMSA Corporativo, Cadena Comercial OXXO, Solistica, Spin | SAP SuccessFactors |
-| **Arca Continental** | `arcacontinental-search` | Arca Continental (Coca-Cola, Bokados, Toly, Wise, AC Digital) | SAP SuccessFactors |
-| **Gruma / Maseca** | `gruma-search` | Gruma, Maseca, Mission Foods Corporativo y plantas | SAP SuccessFactors |
-| **H-E-B México** | `heb-search` | Súpers H-E-B, Mi Tienda del Ahorro y Hub Digital Monterrey | SAP SuccessFactors |
-| **Soriana** | `soriana-search` | Soriana Híper, Súper, City Club y Sodimac México | AIRA Virtual ATS |
-| **Liverpool** | `liverpool-search` | El Puerto de Liverpool, Suburbia y Centros Comerciales Galerías | AIRA Virtual ATS |
-| **The Home Depot** | `homedepot-search` | Oficinas de Apoyo (OAT San Pedro), CEDIS y tiendas México | WordPress AJAX + OAT API |
-| **Grupo Coppel** | `coppel-search` | Tiendas Coppel, BanCoppel, Afore Coppel y Centros Digitales | Oracle Cloud HCM |
-| **AutoZone México** | `autozone-search` | Apoyo a Tiendas (CAT), BTSSC y CEDIS México | Oracle Cloud HCM |
-| **Farmacias del Ahorro** | `fahorro-search` | Corporativo FAhorro y sucursales en todo el país | Workday CXS |
-| **Tec de Monterrey** | `tec-search` | ITESM, Tecmilenio, TecSalud y Sorteos Tec | SAP SuccessFactors |
-| **Ternium / Techint** | `ternium-search` | Ternium, Techint Group y Tenaris México | SAP SuccessFactors |
-| **Dana Incorporated** | `dana-search` | Plantas de manufactura automotriz y transmisiones | SAP SuccessFactors |
-| **The Hershey Company**| `hershey-search` | Planta de manufactura Escobedo y operaciones México | SAP SuccessFactors |
-| **PepsiCo México** | `pepsico-search` | Gamesa, Sabritas, Quaker y CEDIS a nivel nacional | Jibe ATS |
-| **Nestlé México** | `nestle-search` | Fábricas Nestlé, Purina, Nescafé y oficinas México | SAP SuccessFactors |
-| **Grupo Posadas** | `posadas-search` | Hoteles Fiesta Americana, Fiesta Inn, Live Aqua, Grand | SAP SuccessFactors |
-| **Gobierno de Monterrey** | `monterrey-gob-search` | Bolsa de Trabajo Oficial de Monterrey (salarios reales verificados) | API Municipal Directa |
-
-### 2. Bolsas de Trabajo Generales y Agregadores
-| Portal | Comando CLI | Alcance |
-| :--- | :--- | :--- |
-| **Computrabajo México** | `computrabajo-search` | La bolsa general de mayor volumen en México en todos los niveles operativos y profesionales. |
-| **Talenteca México** | `talenteca-search` | Empleos técnicos, administrativos, ingeniería y ventas a nivel nacional. |
-| **OCC Mundial** | `occ-search` | Portal líder en México para vacantes corporativas y mandos medios/altos. |
-| **Indeed México** | `indeedmx-search` | Cobertura amplia en todas las entidades de la República Mexicana. |
-| **LinkedIn Empleos** | `linkedin-search` | Búsqueda global y nacional en LinkedIn sin necesidad de credenciales. |
-
-### 3. Empleo Remoto y Tecnológico
-| Portal | Comando CLI | Alcance |
-| :--- | :--- | :--- |
-| **Get on Board** | `getonbrd-search` | Plataforma líder en tecnología y trabajo remoto en Latinoamérica. |
-| **Remotive** | `remotive-search` | Empleos remotos internacionales en soporte, TI, ingeniería y operaciones. |
-| **RemoteOK** | `remoteok-search` | Agregador remoto global con salarios y etiquetas técnicas. |
-| **We Work Remotely** | `weworkremotely-search` | Directorio internacional de teletrabajo (con Playwright contra Cloudflare). |
-| **FreeHire** | `freehire-search` | Agregador de más de 50 plataformas ATS globales. |
+- **Empresas y Corporativos en México**: CEMEX, FEMSA (OXXO/Spin), Arca Continental (Coca-Cola), Gruma/Maseca, H-E-B, Soriana, El Puerto de Liverpool, The Home Depot, Coppel, AutoZone, Farmacias del Ahorro, Tec de Monterrey, Ternium/Techint, Dana, Hershey's, PepsiCo, Nestlé, Grupo Posadas y Bolsa Oficial de Monterrey.
+- **Bolsas de Empleo Generales**: Computrabajo, Talenteca, OCC Mundial, Indeed México y LinkedIn Empleos.
+- **Trabajo Remoto & Tech Internacional**: Get on Board, Remotive, RemoteOK, We Work Remotely y FreeHire.
 
 ---
 
