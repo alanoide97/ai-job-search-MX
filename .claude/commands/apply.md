@@ -417,6 +417,28 @@ Check whether the posting or the portal it came from asks for free-text fields t
 
 **Only on yes**, read `08-application-forms.md` and draft the fields per its rules, grounded against the same three-source union as the CV and cover letter. Save per that file's "Output format" section. **On no, or when the posting has no such fields, say nothing further and move on** — this is an optional addition and never changes the default two-document output.
 
+### Step 6c: Automatización ATS para SAP SuccessFactors (`sf-apply`)
+
+Si la URL de la vacante o la empresa corresponde a un portal corporativo que opera sobre SAP SuccessFactors (FEMSA/OXXO, CEMEX, Arca Continental, Gruma/Maseca, H-E-B, Tec de Monterrey, Ternium/Techint, Dana, Hershey's, Nestlé, Grupo Posadas, o cualquier dominio `*.sapsf.com` / `*.successfactors.com`):
+
+1. **Avisa al usuario en español y ofrece la postulación desatendida:**
+   > "Detecté que esta vacante pertenece a un portal SAP SuccessFactors (<Nombre del Portal>). Puedo proceder a postularte automáticamente usando `sf-apply` (iniciar sesión, subir tus PDFs recién generados y resolver los cuestionarios de filtro con tus preferencias)."
+   > "¿Deseas que complete la postulación en el portal ahora?"
+
+2. **Si el usuario responde afirmativamente:**
+   - Asegura que los PDFs generados existan en `documents/applications/<company>_<role>/cv.pdf` y `documents/applications/<company>_<role>/cover_letter.pdf` (cópialos desde `cv/` y `cover_letters/` si es necesario).
+   - Ejecuta la herramienta de postulación:
+     ```bash
+     python -m tools.sf_toolkit.cli apply --url "<URL_VACANTE>" --company "<EMPRESA>" --role "<ROL>" --cv "documents/applications/<slug>/cv.pdf" --cover "documents/applications/<slug>/cover_letter.pdf"
+     ```
+   - Si el portal reporta preguntas pendientes sin respuesta determinista en el perfil, muéstralas al usuario en español y al recibir su confirmación, ejecuta:
+     ```bash
+     python -m tools.sf_toolkit.cli resume --id "<ID_PREGUNTA>" --answer "<RESPUESTA>"
+     ```
+   - Al confirmarse el envío, actualiza el estado en `job_search_tracker.csv` a `applied`.
+
+---
+
 ### Pasos Siguientes
-- **¿Te postulaste?** Ejecuta `/outcome <empresa>` para mover la fila de `drafted` a `applied` y registrar la postulación para calibrar futuras búsquedas.
+- **¿Te postulaste manualmente?** Si no usaste la auto-postulación, ejecuta `/outcome <empresa>` para mover la fila de `drafted` a `applied` y registrar la postulación para calibrar futuras búsquedas.
 - **¿Tienes entrevista agendada?** Ejecuta `/interview` para preparar una sesión de práctica y preguntas específicas para esta vacante.

@@ -186,44 +186,13 @@ El asistente adaptará tu CV y carta de presentación a los requerimientos espec
 
 ---
 
-## Automatización de SAP SuccessFactors (`sf_toolkit`)
+## Documentación Adicional
 
-Para portales basados en SAP SuccessFactors (FEMSA, Tec de Monterrey, CEMEX, Arca Continental, Gruma, H-E-B, etc.), puedes utilizar la herramienta `sf_toolkit`:
+Para profundizar en la arquitectura interna y herramientas de automatización avanzada, consulta:
 
-```bash
-# Sincronizar perfil completo (experiencia, educación, idiomas, RFC/CURP)
-python -m tools.sf_toolkit.cli sync --portal cemex
-
-# Aplicar a una vacante específica
-python -m tools.sf_toolkit.cli apply --portal femsa --job-url "<URL_VACANTE>"
-
-# Responder preguntas pendientes que requieran tu autorización
-python -m tools.sf_toolkit.cli resume --id "<ID_PREGUNTA>" --answer "Respuesta"
-```
-
----
-
-## Estructura del Proyecto
-
-```
-ai-job-search-MX/
-├── CLAUDE.md                          # Perfil del candidato y reglas de trabajo
-├── AGENTS.md                          # Guía de compatibilidad para agentes (Antigravity, Codex, etc.)
-├── .env.example                       # Ejemplo parametrizado de variables de entorno
-├── .claude/
-│   ├── commands/                      # Comandos del flujo (/setup, /scrape, /apply, /rank, /outcome, etc.)
-│   ├── skills/                        # Habilidades centrales (asistente de empleo, scraper, upskill)
-│   └── settings.json                  # Permisos de ejecución de Claude Code
-├── .agents/skills/                    # 28 herramientas CLI de búsqueda para portales de México y remotos
-├── tools/
-│   ├── sf_toolkit/                    # Motor de automatización para SAP SuccessFactors
-│   ├── security_guards.py             # Guardas de seguridad para permisos y prevención de fugas PII
-│   └── install_portal_clis.py         # Instalador automático de paquetes para los CLIs
-├── scripts/                           # Scripts de utilería (batch apply, auto apply)
-├── cv/                                # Plantillas base de CV en LaTeX
-├── cover_letters/                     # Plantillas base de carta de presentación
-└── documents/                         # Tus documentos fuente privados (CV, reconocimientos, solicitudes)
-```
+- 📖 [**Estructura y Flujo del Proyecto (docs/STRUCTURE.md)**](docs/STRUCTURE.md): Organización completa de directorios, ciclo de vida de los datos y guardas de seguridad.
+- 🤖 [**Automatización SAP SuccessFactors (docs/SF_TOOLKIT.md)**](docs/SF_TOOLKIT.md): Guía y comandos CLI para sincronizar perfiles corporativos y automatizar postulaciones ATS.
+- ⚙️ [**Guía Técnica de Instalación (SETUP.md)**](SETUP.md): Configuración manual de toolchains LaTeX, Playwright y variables de entorno.
 
 ---
 
