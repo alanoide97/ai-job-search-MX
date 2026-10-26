@@ -95,17 +95,101 @@ Piensa en esta carpeta como un espacio de trabajo: simplemente abres tu asistent
 
 ---
 
-## 🚀 ¿Qué herramienta de IA estás usando? (Copia y pega)
+## 🚀 ¿Qué herramienta de IA estás usando? (Elige tu asistente)
 
-Abre la carpeta del proyecto en tu asistente y copia el mensaje inicial correspondiente:
+Haz clic en tu asistente para ver el mensaje listo para copiar y pegar:
 
-| Asistente / Entorno | Tipo de Acceso | Mensaje para iniciar (Copia y pega) |
-| :--- | :--- | :--- |
-| **Google Antigravity** | Agente local / Terminal | `"Hola Agy, actúa como mi copiloto de empleo. Revisa AGENTS.md y la configuración del proyecto, prepara el entorno local con requirements.txt y los buscadores, y guíame en la entrevista inicial para armar mi perfil laboral."` |
-| **Claude Code (CLI)** | Terminal interactiva | `"/setup"` o `"Configura el entorno y guíame en la entrevista en español para construir mi perfil de búsqueda laboral."` |
-| **Cursor / Windsurf** | Editor con IA (Agent mode) | `"Actúa como mi asistente de empleo. Revisa AGENTS.md, ejecuta el pre-flight setup en la terminal (requirements.txt y dependencias de portales), y realiza la entrevista en español para configurar mi perfil y CV base."` |
-| **GitHub Codespaces** | Nube (60h gratis/mes) | Abre la terminal integrada con tu agente CLI preferido y escribe: `"/setup"` |
-| **ChatGPT / Grok / Claude Web** | Navegador (Sin terminal) | `"Quiero que actúes como mi redactor de CV y estratega laboral para México basándote en las directrices de este repositorio. Te proporcionaré mi trayectoria y vacantes específicas para que generes CVs y cartas adaptadas en formato LaTeX/ATS."` |
+<details open>
+<summary><b><img src="https://cdn.simpleicons.org/google/4285F4" width="16" height="16" vertical-align="middle" /> Google Antigravity (Recomendado)</b></summary>
+<br>
+
+> **Tipo de acceso:** Agente local con terminal integrada.
+> 
+> Copia y pega esto en la ventana de chat de Antigravity:
+> ```text
+> Hola Agy, clona el repositorio https://github.com/alanoide97/ai-job-search-MX.git, entra a la carpeta, revisa AGENTS.md, prepara el entorno (requirements.txt y portales) y guíame en la entrevista en español para armar mi perfil de búsqueda laboral.
+> ```
+</details>
+
+<details>
+<summary><b><img src="https://cdn.simpleicons.org/anthropic/D97706" width="16" height="16" vertical-align="middle" /> Claude Code (CLI)</b></summary>
+<br>
+
+> **Tipo de acceso:** Terminal interactiva.
+> 
+> En tu terminal ejecuta:
+> ```bash
+> git clone https://github.com/alanoide97/ai-job-search-MX.git
+> cd ai-job-search-MX
+> claude
+> ```
+> Y dentro de la sesión de Claude Code escribe:
+> ```text
+> /setup
+> ```
+</details>
+
+<details>
+<summary><b><img src="https://raw.githubusercontent.com/getcursor/cursor/main/assets/icon.png" width="16" height="16" vertical-align="middle" onerror="this.src='https://cdn.simpleicons.org/visualstudiocode/007ACC'" /> Cursor / Windsurf</b></summary>
+<br>
+
+> **Tipo de acceso:** Editor de código con modo Agente.
+> 
+> Abre el panel de chat en modo **Agent** y envía:
+> ```text
+> Clona https://github.com/alanoide97/ai-job-search-MX.git en este workspace, abre la carpeta, revisa AGENTS.md, ejecuta el pre-flight setup en la terminal e inicia la entrevista en español para configurar mi CV y perfil de empleo.
+> ```
+</details>
+
+<details>
+<summary><b><img src="https://cdn.simpleicons.org/github/181717" width="16" height="16" vertical-align="middle" /> GitHub Codespaces (Nube sin instalar nada)</b></summary>
+<br>
+
+> **Tipo de acceso:** Máquina virtual en el navegador (60 horas gratis al mes).
+> 
+> 1. Ve a [github.com/alanoide97/ai-job-search-MX](https://github.com/alanoide97/ai-job-search-MX).
+> 2. Haz clic en el botón verde **`< > Code`** -> pestaña **Codespaces** -> **Create codespace on master**.
+> 3. En la terminal integrada que aparece, ejecuta tu asistente CLI (por ejemplo `claude`) y escribe:
+> ```text
+> /setup
+> ```
+</details>
+
+<details>
+<summary><b>🐾 OpenClaw (Agente Local Autónomo)</b></summary>
+<br>
+
+> **Tipo de acceso:** Agente personal self-hosted con ejecución en sistema operativo y mensajería.
+> 
+> Envía este prompt a tu sesión de OpenClaw:
+> ```text
+> Clona el repositorio https://github.com/alanoide97/ai-job-search-MX.git, lee AGENTS.md y SETUP.md, ejecuta el setup de dependencias y acompáñame en la entrevista conversacional para armar mi CV y perfil de búsqueda para México.
+> ```
+</details>
+
+<details>
+<summary><b>🧠 Hermes Agent (Nous Research)</b></summary>
+<br>
+
+> **Tipo de acceso:** Agente autónomo con memoria a largo plazo y auto-aprendizaje.
+> 
+> Envía a tu instancia de Hermes:
+> ```text
+> Accede al repositorio https://github.com/alanoide97/ai-job-search-MX.git, revisa AGENTS.md para conocer los skills disponibles, inicializa las herramientas de búsqueda y ayúdame a postularme y rastrear vacantes en México.
+> ```
+</details>
+
+<details>
+<summary><b>💬 ChatGPT / Grok / Claude Web (En navegador, sin terminal)</b></summary>
+<br>
+
+> **Tipo de acceso:** Chat web tradicional (asistencia en redacción sin ejecución local).
+> 
+> Copia y pega en la conversación:
+> ```text
+> Quiero que actúes como mi redactor de CV y estratega laboral para vacantes en México basándote en el framework del repositorio https://github.com/alanoide97/ai-job-search-MX. Te proporcionaré mi experiencia y el enlace o texto de una vacante para que generes mi CV y carta de presentación optimizados para filtros ATS en formato LaTeX.
+> ```
+</details>
 
 ---
 
