@@ -22,27 +22,16 @@ Si esta herramienta te ayuda a optimizar tu búsqueda laboral en México y LATAM
 
 **AI Job Search — Edición México & LATAM** es un fork especializado y adaptado para el mercado laboral mexicano y latinoamericano del proyecto original [ai-job-search](https://github.com/ai-job-search-dev/ai-job-search) creado por **Mads Lorentzen**.
 
-Convierte a tu agente de IA ([Claude Code](https://claude.com/claude-code), [Google Antigravity](https://github.com/google/antigravity), Codex o Gemini CLI) en un copiloto integral de carrera: busca vacantes en vivo en las principales empresas y bolsas de trabajo de México, evalúa el ajuste de puesto con criterios rigurosos, genera CVs y cartas de presentación personalizados y compilados en LaTeX/PDF, y automatiza el llenado de perfiles y postulaciones en sistemas ATS corporativos (como SAP SuccessFactors).
+Convierte a tu agente de IA ([Claude Code](https://claude.com/claude-code), [Google Antigravity](https://github.com/google/antigravity), Codex o Gemini CLI) en un copiloto integral de carrera: busca vacantes en vivo en las principales empresas y bolsas de trabajo de México, evalúa el ajuste de puesto con criterios rigurosos, genera CVs y cartas de presentación personalizados y compilados en LaTeX/PDF, y automatiza el llenado de perfiles y postulaciones en sistemas ATS corporativos.
 
 ---
 
 ## Características Principales
 
-- 🇲🇽 **28 Buscadores Nativos para México y LATAM**: Herramientas CLI listas para usar que consultan portales corporativos (CEMEX, FEMSA/OXXO, Arca Continental, Gruma, H-E-B, Soriana, Liverpool, Home Depot, Coppel, AutoZone, etc.), agregadores nacionales (Computrabajo, OCC, Talenteca, Indeed MX) y plataformas de trabajo remoto internacional.
-- 🤖 **Automatización SAP SuccessFactors (`sf_toolkit`)**: Motor de automatización en Playwright para inicio de sesión, sincronización de perfil con datos oficiales (RFC, CURP, NSS, historial laboral, educación), resolución determinista de cuestionarios de filtrado y cola de preguntas pendientes para revisión humana.
-- 📄 **Generación de CV y Carta de Presentación en LaTeX**: Plantillas profesionales compiladas automáticamente (`lualatex` para CV, `xelatex` para carta) con verificación visual de maquetación (sin saltos huérfanos) y prueba de lectura ATS en la capa de texto del PDF.
-- 🔒 **Privacidad Total (Zero PII Leaks)**: Tus datos personales, CVs generados, cartas y credenciales residen exclusivamente en tu máquina local. El repositorio incluye guardas de seguridad (`tools/security_guards.py`) y reglas estrictas en `.gitignore` para evitar cualquier fuga accidental de información sensible.
-- 💼 **Agnóstico al Sector Laboral**: Diseñado tanto para perfiles operativos, administrativos, logística, ventas y manufactura, como para ingenierías y tecnología.
-
----
-
-## Portales y Bolsas de Empleo Incluidos
-
-El framework rastrea en tiempo real más de **28 plataformas clave** en México, LATAM y remoto internacional:
-
-- **Empresas y Corporativos en México**: CEMEX, FEMSA (OXXO/Spin), Arca Continental (Coca-Cola), Gruma/Maseca, H-E-B, Soriana, El Puerto de Liverpool, The Home Depot, Coppel, AutoZone, Farmacias del Ahorro, Tec de Monterrey, Ternium/Techint, Dana, Hershey's, PepsiCo, Nestlé, Grupo Posadas y Bolsa Oficial de Monterrey.
-- **Bolsas de Empleo Generales**: Computrabajo, Talenteca, OCC Mundial, Indeed México y LinkedIn Empleos.
-- **Trabajo Remoto & Tech Internacional**: Get on Board, Remotive, RemoteOK, We Work Remotely y FreeHire.
+- 🎯 **Alineación y Adaptación Quirúrgica**: Genera CVs y cartas de presentación en LaTeX (`lualatex`/`xelatex`) con auditoría estricta de maquetación visual y verificación de legibilidad ATS en la capa de texto del PDF.
+- 🤖 **Automatización de Postulaciones**: Integración con sistemas ATS corporativos para sincronizar perfiles oficiales y resolver filtros de postulación automáticamente.
+- 🔌 **Integración Asistida de Nuevos Portales**: ¿Te interesa una empresa que no está en la lista? Tu IA puede analizar e integrar un buscador nuevo para casi cualquier portal público en minutos con solo proporcionarle su enlace.
+- 🔒 **Privacidad Total y Local (Zero Leaks)**: Tus datos personales, identificadores fiscales, credenciales y CVs residen únicamente en tu máquina. El proyecto incluye guardas automatizadas que bloquean cualquier fuga accidental.
 
 ---
 
@@ -50,17 +39,11 @@ El framework rastrea en tiempo real más de **28 plataformas clave** en México,
 
 No necesitas ser programador ni configurar herramientas complejas manualmente. **Tu agente de Inteligencia Artificial se encarga de instalar y preparar todo por ti.**
 
-Piensa en esta carpeta como un espacio de trabajo: simplemente abres tu asistente de IA dentro de ella y hablas en lenguaje natural.
+Piensa en esta carpeta como un espacio de trabajo: simplemente abres tu asistente de IA y hablas en lenguaje natural.
 
-### Entornos recomendados para ejecutarlo:
-- **Gratuitos / Mínima fricción en la nube**: Puedes abrir este repositorio directamente en un espacio de trabajo con terminal como **GitHub Codespaces** (gratis cada mes para cualquier cuenta de GitHub) o **Gitpod**, donde la IA tiene acceso completo a la máquina sin que tengas que instalar nada en tu computadora local.
-- **En tu computadora**: Asistentes con capacidades de ejecución local y terminal como **Google Antigravity**, **Claude Code**, **Cursor**, **Windsurf** o terminales con modelos de IA.
+### 🚀 Elige qué herramienta de IA estás usando (Copia y pega)
 
----
-
-## 🚀 ¿Qué herramienta de IA estás usando? (Elige tu asistente)
-
-Haz clic en tu asistente para ver el mensaje listo para copiar y pegar:
+Haz clic en tu asistente para ver el mensaje de inicio listo para usar:
 
 <details open>
 <summary><b><img src="https://cdn.simpleicons.org/google/4285F4" width="16" height="16" vertical-align="middle" /> Google Antigravity (Recomendado)</b></summary>
@@ -183,6 +166,23 @@ Pega el enlace de la vacante y dile:
 *(O comando rápido: `/apply [URL]`)*
 
 El asistente adaptará tu CV y carta de presentación a los requerimientos específicos del puesto, verificará que el PDF sea 100% legible para los filtros automáticos (ATS) de recursos humanos y te asistirá en el envío.
+
+### 4. ¿Falta alguna empresa? Integra casi cualquier portal público
+Si deseas buscar empleo en una bolsa de trabajo o empresa que aún no está integrada, dile a tu asistente:
+> *"Agrega un nuevo buscador para este portal: [URL de la bolsa de empleo]"*
+*(O comando rápido: `/add-portal [URL]`)*
+
+Tu agente de IA analizará la estructura de la página pública, generará el buscador compatible (`SKILL.md`), ejecutará una consulta de prueba en vivo y lo registrará en tu catálogo local sin que tengas que programar nada.
+
+---
+
+## 🏢 Portales y Bolsas de Empleo Compatibles
+
+El framework cuenta con **28 buscadores integrados** listos para rastrear en tiempo real:
+
+- **Empresas y Corporativos en México**: CEMEX, FEMSA (OXXO/Spin), Arca Continental (Coca-Cola), Gruma/Maseca, H-E-B, Soriana, El Puerto de Liverpool, The Home Depot, Coppel, AutoZone, Farmacias del Ahorro, Tec de Monterrey, Ternium/Techint, Dana, Hershey's, PepsiCo, Nestlé, Grupo Posadas y Bolsa Oficial de Monterrey.
+- **Bolsas de Empleo Generales**: Computrabajo, Talenteca, OCC Mundial, Indeed México y LinkedIn Empleos.
+- **Trabajo Remoto & Tech Internacional**: Get on Board, Remotive, RemoteOK, We Work Remotely y FreeHire.
 
 ---
 
