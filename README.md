@@ -198,7 +198,7 @@ Para profundizar en la arquitectura interna y herramientas de automatización av
 
 ## Linaje y Agradecimientos
 
-- **Proyecto Original**: Creado por **[Mads Lorentzen](https://github.com/MadsLorentzen)** y la comunidad de [ai-job-search](https://github.com/ai-job-search-dev/ai-job-search). La arquitectura base de drafter-reviewer, la compilación e inspección estricta de PDFs y la filosofía de honestidad sin alucinaciones fueron diseñadas originalmente por Mads.
+- **Proyecto Original**: Creado por **[Mads Lorentzen](https://github.com/MadsLorentzen)** y la comunidad de [ai-job-search](https://github.com/ai-job-search-dev/ai-job-search). La arquitectura base de redactor-revisor (drafter-reviewer) y la compilación estricta de documentos en PDF fueron diseñadas originalmente por Mads.
 - **Edición México & LATAM**: Desarrollado y mantenido por **[Jorge Alan Gonzalez Barron](https://github.com/alanoide97)** (@alanoide97) y colaboradores, agregando la suite de 25+ buscadores nativos mexicanos, el motor de automatización ATS `sf_toolkit` y la parametrización de entornos.
 
 ---
