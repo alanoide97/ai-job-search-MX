@@ -180,7 +180,6 @@ def hydrate_personal_info_section(
         if val is None:
             continue
 
-        # Special rule: if Nombre(s) has "Jorge Alan" vs "Jorge", only overwrite if empty or requested
         if _apply_field_value(page, f, val, overwrite=overwrite, allow_fallback=False):
             updated_count += 1
 
@@ -518,13 +517,18 @@ def hydrate_skills_section(page: Page, profile: Dict[str, Any]) -> int:
 
     print(f"    [SYNC] Hydrating '{sec_title}'...")
 
+    skills_data = profile.get("skills", {})
+    certs = skills_data.get("certifications", "")
+    tools_str = skills_data.get("tools", "")
+    competencies = skills_data.get("competencies", "")
+
     def _skills_resolver(norm_lbl: str, wtype: str) -> Tuple[Any, bool]:
-        if "certificaciones" in norm_lbl or "certifications" in norm_lbl:
-            return "AZ-900 (en preparación), MD-102 (en preparación), Entrenamiento Axcient / Kaseya / ConnectWise", False
-        if "herramientas" in norm_lbl or "tools" in norm_lbl:
-            return "Active Directory, Microsoft Entra ID, Microsoft 365, Intune, Mosyle MDM, Autotask, ServiceNow, PowerShell, SQL Server", False
-        if "conocimientos" in norm_lbl or "skills" in norm_lbl or "aptitud" in norm_lbl:
-            return "Soporte Técnico L2/L3, Administración de Servidores Windows/Linux, Redes TCP/IP/DNS/VPN, Virtualización Hyper-V, Respaldos Axcient", False
+        if ("certificaciones" in norm_lbl or "certifications" in norm_lbl) and certs:
+            return certs, False
+        if ("herramientas" in norm_lbl or "tools" in norm_lbl) and tools_str:
+            return tools_str, False
+        if ("conocimientos" in norm_lbl or "skills" in norm_lbl or "aptitud" in norm_lbl) and competencies:
+            return competencies, False
         return None, False
 
     return 1 if _fill_row_fields(page, row_id, _skills_resolver, overwrite=True) > 0 else 0
@@ -572,11 +576,11 @@ def sync_full_candidate_profile(
 
     default_cv = cv_path
     if not default_cv:
-        candidate_Master = os.path.join(
-            REPO_ROOT, "cv", "JorgeAlanGonzalezBarron_General_SoporteTI_TechOps_2026-10-01.pdf"
-        )
-        if os.path.exists(candidate_Master):
-            default_cv = candidate_Master
+        for candidate_name in ("cv.pdf", "main.pdf"):
+            candidate_master = os.path.join(REPO_ROOT, "cv", candidate_name)
+            if os.path.exists(candidate_master):
+                default_cv = candidate_master
+                break
 
     cv_uploaded = False
     if default_cv and os.path.exists(default_cv):
