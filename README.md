@@ -83,56 +83,45 @@ El framework incluye herramientas CLI especializadas en `.agents/skills/` que se
 
 ---
 
-## Requisitos Previos
+## ¿Cómo funciona? (Para cualquier persona)
 
-1. **Agente de IA**:
-   - [Claude Code](https://claude.com/claude-code) (CLI oficial)
-   - O bien [Google Antigravity](https://github.com/google/antigravity), Codex o herramientas afines (ver [`AGENTS.md`](AGENTS.md)).
-2. **Python**: Versión 3.10 o superior.
-3. **Bun**: Entorno de ejecución de JavaScript ([bun.sh](https://bun.sh)).
-4. **Distribución LaTeX**: [TeX Live](https://tug.org/texlive/), [MiKTeX](https://miktex.org/) o [TinyTeX](https://yihui.org/tinytex/) con los motores `lualatex` y `xelatex` instalados.
-5. **Node.js y Playwright** (opcional, para automatización de postulaciones y We Work Remotely).
+No necesitas ser programador ni configurar herramientas complejas manualmente. **Tu agente de Inteligencia Artificial se encarga de instalar y preparar todo por ti.**
+
+Piensa en esta carpeta como un espacio de trabajo: simplemente abres tu asistente de IA dentro de ella y hablas en lenguaje natural.
+
+### Entornos recomendados para ejecutarlo:
+- **Gratuitos / Mínima fricción en la nube**: Puedes abrir este repositorio directamente en un espacio de trabajo con terminal como **GitHub Codespaces** (gratis cada mes para cualquier cuenta de GitHub) o **Gitpod**, donde la IA tiene acceso completo a la máquina sin que tengas que instalar nada en tu computadora local.
+- **En tu computadora**: Asistentes con capacidades de ejecución local y terminal como **Google Antigravity**, **Claude Code**, **Cursor**, **Windsurf** o terminales con modelos de IA.
 
 ---
 
-## Guía de Inicio Rápido
+## Inicio Rápido: Solo habla con tu IA
 
-### 1. Iniciar la configuración integral (`/setup`)
+Una vez abierto el proyecto en tu asistente de IA, puedes darle instrucciones directas en español:
 
-Inicia tu agente de IA ([Claude Code](https://claude.com/claude-code), [Google Antigravity](https://github.com/google/antigravity), etc.) en la terminal del proyecto y ejecuta:
+### 1. Configuración inicial
+Dile a tu asistente:
+> *"Ayúdame a configurar el proyecto y preparar mi perfil de búsqueda laboral"*
+*(O si usas comandos rápidos estilo slash: `/setup`)*
 
-```text
-/setup
-```
+La IA se encargará automáticamente de:
+- Verificar e instalar las dependencias necesarias y navegadores de automatización.
+- Habilitar los buscadores de empleo mexicanos y latinoamericanos.
+- Guiarte en una breve entrevista en español para conocer tu experiencia, puesto deseado, expectativas salariales y armar tu CV base.
 
-El comando `/setup` se encarga de todo el proceso de inicio de manera desatendida y automática:
-- **Dependencias y Navegadores**: Instala las librerías requeridas (`requirements.txt`) y los motores de Playwright (`chromium`, `firefox`).
-- **Buscadores de Empleo**: Instala las dependencias de los 29 buscadores CLI para México y LATAM.
-- **Variables de Entorno**: Inicializa tu archivo local `.env` a partir de `.env.example`.
-- **Entrevista de Perfil en Español**: Te guía con preguntas conversacionales para construir tu perfil profesional, metas, salarios en MXN y compilar tu CV en LaTeX.
+### 2. Buscar vacantes
+Dile a tu asistente:
+> *"Busca vacantes activas que coincidan con mi perfil"*
+*(O comando rápido: `/scrape`)*
 
-> Para instrucciones avanzadas de instalación manual, consulta la [**Guía Detallada (SETUP.md)**](SETUP.md).
+La IA consultará los portales de empleo seleccionados (FEMSA, CEMEX, Computrabajo, LinkedIn, etc.), filtrará duplicados y te mostrará las mejores oportunidades ordenadas por relevancia y salario.
 
-### 2. Buscar vacantes en vivo (`/scrape`)
+### 3. Postularte a una vacante
+Pega el enlace de la vacante y dile:
+> *"Ayúdame a postularme a esta vacante: [URL de la vacante]"*
+*(O comando rápido: `/apply [URL]`)*
 
-```text
-/scrape
-```
-
-Ejecutará los buscadores habilitados en `.agents/skills/`, eliminará duplicados y presentará una lista de vacantes ordenadas por afinidad con tu perfil profesional.
-
-### 3. Postularse a una vacante (`/apply`)
-
-```text
-/apply https://jobs.cemex.com/job/Monterrey-Ejemplo/12345/
-```
-
-El flujo `/apply` ejecutará:
-1. Análisis de adecuación al perfil.
-2. Redacción personalizada de CV y Carta de Presentación en LaTeX.
-3. Crítica por un agente revisor independiente.
-4. Compilación e inspección visual de PDFs (2 páginas exactas para CV, 1 página para carta).
-5. Auditoría de compatibilidad ATS en la capa de texto.
+El asistente adaptará tu CV y carta de presentación a los requerimientos específicos del puesto, verificará que el PDF sea 100% legible para los filtros automáticos (ATS) de recursos humanos y te asistirá en el envío.
 
 ---
 
@@ -180,7 +169,7 @@ ai-job-search-MX/
 ## Linaje y Agradecimientos
 
 - **Proyecto Original**: Creado por **[Mads Lorentzen](https://github.com/MadsLorentzen)** y la comunidad de [ai-job-search](https://github.com/ai-job-search-dev/ai-job-search). La arquitectura base de drafter-reviewer, la compilación e inspección estricta de PDFs y la filosofía de honestidad sin alucinaciones fueron diseñadas originalmente por Mads.
-- **Edición México & LATAM**: Desarrollado y mantenido por **[Jorge Alan Gonzalez Barron](https://github.com/alano)** (@alano) y colaboradores, agregando la suite de 25+ buscadores nativos mexicanos, el motor de automatización ATS `sf_toolkit` y la parametrización de entornos.
+- **Edición México & LATAM**: Desarrollado y mantenido por **[Jorge Alan Gonzalez Barron](https://github.com/alanoide97)** (@alano) y colaboradores, agregando la suite de 25+ buscadores nativos mexicanos, el motor de automatización ATS `sf_toolkit` y la parametrización de entornos.
 
 ---
 
