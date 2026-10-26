@@ -95,6 +95,20 @@ Piensa en esta carpeta como un espacio de trabajo: simplemente abres tu asistent
 
 ---
 
+## 🚀 ¿Qué herramienta de IA estás usando? (Copia y pega)
+
+Abre la carpeta del proyecto en tu asistente y copia el mensaje inicial correspondiente:
+
+| Asistente / Entorno | Tipo de Acceso | Mensaje para iniciar (Copia y pega) |
+| :--- | :--- | :--- |
+| **Google Antigravity** | Agente local / Terminal | `"Hola Agy, actúa como mi copiloto de empleo. Revisa AGENTS.md y la configuración del proyecto, prepara el entorno local con requirements.txt y los buscadores, y guíame en la entrevista inicial para armar mi perfil laboral."` |
+| **Claude Code (CLI)** | Terminal interactiva | `"/setup"` o `"Configura el entorno y guíame en la entrevista en español para construir mi perfil de búsqueda laboral."` |
+| **Cursor / Windsurf** | Editor con IA (Agent mode) | `"Actúa como mi asistente de empleo. Revisa AGENTS.md, ejecuta el pre-flight setup en la terminal (requirements.txt y dependencias de portales), y realiza la entrevista en español para configurar mi perfil y CV base."` |
+| **GitHub Codespaces** | Nube (60h gratis/mes) | Abre la terminal integrada con tu agente CLI preferido y escribe: `"/setup"` |
+| **ChatGPT / Grok / Claude Web** | Navegador (Sin terminal) | `"Quiero que actúes como mi redactor de CV y estratega laboral para México basándote en las directrices de este repositorio. Te proporcionaré mi trayectoria y vacantes específicas para que generes CVs y cartas adaptadas en formato LaTeX/ATS."` |
+
+---
+
 ## Inicio Rápido: Solo habla con tu IA
 
 Una vez abierto el proyecto en tu asistente de IA, puedes darle instrucciones directas en español:
